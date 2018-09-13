@@ -11,7 +11,7 @@ After cloning the repository run ``install.cmd``, which will download core binar
 
 ## HTML Generation
 
-If you wish to add your own examples, you can use the Python script ``pipe2html`` in the root folder. It takes a ``.pipeline`` file and automatically converts it to a ``.html`` file. Therefore [Pandoc](https://pandoc.org/installing.html) is required, so please make sure you have installed it on your computer.
+If you wish to add your own examples, you can use the Python script ``pipe2html.py`` in the root folder. It takes a ``.pipeline`` file and automatically converts it to a ``.html`` file. Therefore [Pandoc](https://pandoc.org/installing.html) is required, so please make sure you have installed it on your computer.
 
 ```
 usage: pipe2html.py [-h] [--author author] [--bin bin] path

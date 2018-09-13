@@ -32,6 +32,8 @@ def convert(args):
     path_html = os.path.join(dir, name_html)
     name_md = name + '.md'
     path_md = os.path.join(dir, name_md)
+    name_cmd = name + '.cmd'
+    path_cmd = os.path.join(dir, name_cmd)
 
     regex = re.compile(r'<!--(.*?)-->(.*?)<!-->', re.DOTALL)    
 
@@ -51,7 +53,13 @@ def convert(args):
     p = subprocess.Popen('pandoc -o {} -s -f markdown --number-sections --template ../templates/standalone.html --css ../templates/template.css --toc --toc-depth=4 {}'.format(name_html, name_md), cwd=dir)
     p.wait()
 
-    print(' > {}'.format(name_html))    
+    print(' > {}'.format(name_html), end='')    
+
+    with open(path_cmd, 'w') as fp:
+        fp.write('@echo off\n')
+        fp.write(r'{}\xmlpipe -log ssi.log {}'.format(args.bin, name))
+
+    print(' > {}'.format(name_cmd), end='\n')    
 
     os.remove(path_md)
 
@@ -61,6 +69,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert pipeline to a html document.')
     parser.add_argument('path', metavar='path', type=str, help='path to pipeline')
     parser.add_argument('--author', metavar='author', type=str, help='name of author', default='Unkown')
+    parser.add_argument('--bin', metavar='bin', type=str, help='path to binaries', default=r'..\bin')
     args = parser.parse_args()
 
     convert(args)
