@@ -7,7 +7,7 @@ This is a good starting point for people interested in the [Social Signal Interp
 
 ## Installation
 
-After cloning the repository run ``install.cmd``, which will download core binaries from the official [SSI Github project](https://github.com/hcmlab/ssi/). You will also find a couple of directories with a trailing number (e.g. ``01_basics``). They include the examples featured by this tutorial and again include files ordered by a trailing number. Each example exists of a ``.pipeline`` file (the actual pipeline), which is accompanied by files ending on ``.html`` and ``.cmd``. The first one is automatically generated from the pipeline to highlight the most important pieces of the code. Just open it in your favourite browser to access this information. To see the pipeline in action execute the batch file.
+After cloning the repository run ``install.cmd``, which will download core binaries from the official [SSI Github](https://github.com/hcmlab/ssi/) project. You will also find a couple of directories with a trailing number (e.g. ``01_basics``). They include the examples featured by this tutorial and again include files ordered by a trailing number. Each example exists of a ``.pipeline`` file (the actual pipeline), which is accompanied by files ending on ``.html`` and ``.cmd``. The first one is automatically generated from the pipeline to highlight the most important pieces of the code. Just open it in your favourite browser to access this information. To see the pipeline in action, execute the batch file.
 
 ## HTML Generation
 
@@ -31,7 +31,7 @@ The parser will look for parts of the pipeline that are embedded in a comment of
 
 ```
 <!-- comment -->
-<code...>
+code
 <!-->
 ```
 
