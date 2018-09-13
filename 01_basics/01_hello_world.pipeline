@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<!-- 
+# Every pipeline starts with...
+-->
+<pipeline ssi-v="1">
+<!-->
+	
+	<!-- # Let's load some components
+	
+	Next we load the components, which we need to to ensemble our pipeline. Components can be imported from dynamically-linked libraries (.dll on Windows or .so on Linux), which we call plug-ins.
+	-->
+	<register>
+		<load name="mouse"/>
+		<load name="graphic"/>		
+	</register>
+	<!-->
+
+	<!-- # Connect a sensor
+	
+	By setting mask to 1 we instruct the sensor to listen to the left mouse buttons. As long as the left mouse buttons is pressed the cursor stream will be set to 1, 0 otherwise.	
+	-->
+	<sensor create="Mouse" mask="1">
+		<output channel="button" pin="button" />
+		<output channel="cursor" pin="cursor" />
+	</sensor>
+	<!-->
+	
+	<!-- # Add some visualization -->
+	<consumer create="SignalPainter:plot" title="cursor" size="10.0">
+		<input pin="cursor" frame="0.2s" />		
+	</consumer>
+	<consumer create="SignalPainter:plot" title="button" size="10.0">
+		<input pin="button" frame="0.2s" />		
+	</consumer>	
+	<!-->
+	
+	<!-- # Align the windows -->
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>
+	</object>
+	<!-->
+
+<!-- 
+# And finally close the pipeline.
+
+To run the pipeline open a console in the current directory and type `..\bin\xmlpipe 01_hello_world`
+-->
+</pipeline>
+<!-->
