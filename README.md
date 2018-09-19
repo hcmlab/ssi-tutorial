@@ -27,12 +27,12 @@ optional arguments:
   --bin bin        path to binaries
 ```
 
-The parser will look for parts of the pipeline that are embedded in a comment of the following form (please note the trailing ``<!-->`` as otherwise the comment will be ignored):
+The parser will look for parts of the pipeline that are embedded in a comment of the following form (please note the trailing ``<!---->`` as otherwise the comment will be ignored):
 
 ```
 <!-- comment -->
 code
-<!-->
+<!---->
 ```
 
 The comment will be added to the html page followed by the code snippet. Obviously, you can markdown the comment with any tags supported by [Pandoc](https://pandoc.org/MANUAL.html).

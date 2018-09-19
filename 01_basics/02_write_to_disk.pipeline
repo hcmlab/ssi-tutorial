@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<pipeline ssi-v="1">
+
+	<!-- # Load additional components
+	
+	We load two more plug-ins: ``ioput`` and ``control``, which give us access to additional components. Check out the [API](file:///F:/openssi/docs/api/index.html) to see which are those additional components. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-sensor)
+	-->
+	<register>
+		<load name="mouse"/>
+		<load name="graphic"/>		
+		<load name="ioput"/>				
+		<load name="control"/>			
+	</register>
+	<!---->
+
+	<sensor create="Mouse" mask="1">
+		<output channel="button" pin="button" />
+		<output channel="cursor" pin="cursor" />
+	</sensor>
+	
+	<!-- # Add the writers
+	
+	The component we use to store streams is called ``FileWriter``. It takes as input any type of stream and writes it to a file. Therefore we have to set an output path (option ``path``) and also whether values should be stored in text (``type="1"``) or binary format (``type="0"``). Note that we use two different ways of setting the ``frame`` size, which determines the length of the chunks that a component receives. In the first case we specify the number of samples, i.e. the component will receive 10 values per chunk. In the second case we use ``200ms`` instead, i.e. the component will receive chunks with a size of 200 ms. Since the default sample rate a mouse sensor's default sample rate is 50 Hz (which is 50 samples per second), this also corresponds to 10 samples per chunk. However, it changes with the sample rate of the input stream. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-visualization-storage)
+	-->
+	<consumer create="FileWriter" path="cursor" type="1" overwrite="true">
+		<input pin="cursor" frame="10" />		
+	</consumer>
+	<consumer create="FileWriter" path="button" type="0" overwrite="true">
+		<input pin="button" frame="200ms" />		
+	</consumer>	
+	<!---->
+	
+	<!-- # Record on demand
+	
+	The two writers we have added will immediately start a new recording (overwriting the previous one since ``overwrite=true``) and continuously write until the pipeline is stopped. Sometimes we want to control when a recording starts and stops. To implement this, we add a ``ControlCheckBox`` and another ``FileWriter``, which we assign the id ``record``. By setting the id as the target of the check box (``id=record``), we instruct the check box to control the behavior of the writer. That is, a recording starts only the button is checked. By setting ``overwrite=false`` we make sure that subsequent calls will create new files (proper numbering is controlled by using ``%(num,2)`` in the path name). [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-advanced-record)
+	
+	-->
+	<runnable create="ControlCheckBox:check" id="record" default="false" label="RECORD"/>		
+	<consumer create="FileWriter:record" path="cursor_on_demand_$(num,2)" type="1" overwrite="false">
+		<input pin="cursor" frame="10" />		
+	</consumer>
+	<!---->
+	
+	<consumer create="SignalPainter:plot" title="CURSOR" size="10.0">
+		<input pin="cursor" frame="0.2s" />		
+	</consumer>
+	<consumer create="SignalPainter:plot" title="BUTTON" size="10.0">
+		<input pin="button" frame="0.2s" />		
+	</consumer>	
+	
+	<!-- # Align the windows 
+
+	Finally, we align the check box by adding one more line to the ``Decorator``. Done! [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
+	
+	-->
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,500">console</area>
+		<area pos="400,0,400,600">plot*</area>
+		<area pos="0,500,50,100">check</area>
+	</object>	
+	<!---->	
+
+</pipeline>
+

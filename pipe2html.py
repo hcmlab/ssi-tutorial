@@ -35,13 +35,13 @@ def convert(args):
     name_cmd = name + '.cmd'
     path_cmd = os.path.join(dir, name_cmd)
 
-    regex = re.compile(r'<!--(.*?)-->(.*?)<!-->', re.DOTALL)    
+    regex = re.compile(r'<!--(.*?)-->(.*?)<!---->', re.DOTALL)    
 
     print('{}: {}'.format(dir, name_pipe), end='')
 
     with open(path_pipe, 'r')  as fp_pipe, open(path_md, 'w') as fp_md:
 
-        fp_md.write('% {}\n% {}\n% {}\n\n'.format(os.path.join(dir, name), args.author, datetime.datetime.today().strftime('%Y-%m-%d')))
+        fp_md.write('% {}\n% {}\n% {}\n\n'.format(name, args.author, datetime.datetime.today().strftime('%Y-%m-%d')))
 
         pipe = fp_pipe.read()                
         matches = [m.groups() for m in regex.finditer(pipe)]
