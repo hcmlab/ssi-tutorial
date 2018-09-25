@@ -10,7 +10,7 @@ An SSI pipeline is a XML tree that describes the data flow between a series of c
 	
 	<!-- # Let's load some components
 	
-	We load the components, which we need to to ensemble our pipeline. Components can be imported from dynamically-linked libraries (``.dll`` on Windows or ``.so`` on Linux), which we call plug-ins. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-component)
+	We load the components, which we need to to ensemble our pipeline. Components can be imported from dynamically-linked libraries (`.dll` on Windows or `.so` on Linux), which we call plug-ins. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-component)
 	-->
 	<register>
 		<load name="mouse"/>
@@ -20,7 +20,7 @@ An SSI pipeline is a XML tree that describes the data flow between a series of c
 
 	<!-- # Connect a sensor
 	
-	We add a mouse sensor, which offers two streams: the cursor position and whether on or more buttons on the mouse are currently pressed. We connect to both streams and assign unique pins, here ``button`` and ``cursor``. Later we can use these pins to connect the streams with a component. To create the component, we need to know its name. A useful source of information is therefore the [API](file:///F:/openssi/docs/api/index.html) of SSI. It features a list of plug-ins in the left menu. When you click on one, you'll get a list of the embedded components. If you select a component you will see its name, type and options. In case of ``Mouse`` you will learn that the component is a sensor and that an option ``mask`` exists. It determines which buttons will fire when clicked by the user. We can overwrite the default value by setting ``mask="1"``. Now, as long as the left mouse button is pressed the cursor stream will be 1. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-sensor)
+	We add a mouse sensor, which offers two streams: the cursor position and whether on or more buttons on the mouse are currently pressed. We connect to both streams and assign unique pins, here `button` and `cursor`. Later we can use these pins to connect the streams with a component. To create the component, we need to know its name. A useful source of information is therefore the [API](file:///F:/openssi/docs/api/index.html) of SSI. It features a list of plug-ins in the left menu. When you click on one, you'll get a list of the embedded components. If you select a component you will see its name, type and options. In case of `Mouse` you will learn that the component is a sensor and that an option `mask` exists. It determines which buttons will fire when clicked by the user. We can overwrite the default value by setting `mask="1"`. Now, as long as the left mouse button is pressed the cursor stream will be 1. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-sensor)
 	-->
 	<sensor create="Mouse" mask="1">
 		<output channel="button" pin="button" />
@@ -30,30 +30,30 @@ An SSI pipeline is a XML tree that describes the data flow between a series of c
 	
 	<!-- # Add some visualization 
 	
-	As mentioned before we can connect to streams by using their pins. Here, we add two graphs to visualize the cursor and button streams during the last 10 seconds. This time, we also assign an id to the instances by adding ``:<id>`` after a component's name. In fact, we assign the id ``plot`` twice. However, SSI automatically adds a trailing number to keep the two instances apart. Also note that in now we use the ``consumer`` tag instead of the ``sensor`` tag. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
+	As mentioned before we can connect to streams by using their pins. Here, we add two graphs to visualize the cursor and button streams during the last 10 seconds. This time, we also assign an id to the instances by adding `:<id>` after a component's name. In fact, we assign the id `paint` twice. However, SSI automatically adds a trailing number to keep the two instances apart. Also note that in now we use the `consumer` tag instead of the `sensor` tag. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
 	-->
-	<consumer create="SignalPainter:plot" title="CURSOR" size="10.0">
+	<consumer create="SignalPainter:paint" title="CURSOR" size="10.0">
 		<input pin="cursor" frame="0.2s" />		
 	</consumer>
-	<consumer create="SignalPainter:plot" title="BUTTON" size="10.0">
+	<consumer create="SignalPainter:paint" title="BUTTON" size="10.0">
 		<input pin="button" frame="0.2s" />		
 	</consumer>	
 	<!---->
 	
 	<!-- # Align the windows 
 	
-	By default all windows will open in the same location on the screen. To move them around an instance of ``Decorator`` is added. We refer to instances we want to reposition by their id. In this case, the console (which always has the id ``console``) and the two graphs we just added. By using the wildcard symbol ``*`` we refer to both plots and let SSI assemble the two windows in the mentioned area. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
+	By default all windows will open in the same location on the screen. To move them around an instance of `Decorator` is added. We refer to instances we want to reposition by their id. In this case, the console (which always has the id `console`) and the two graphs we just added. By using the wildcard symbol `*` we refer to both paints and let SSI assemble the two windows in the mentioned area. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
 	-->
 	<object create="Decorator" icon="true" title="Pipeline">
 		<area pos="0,0,400,600">console</area>
-		<area pos="400,0,400,600">plot*</area>
+		<area pos="400,0,400,600">paint*</area>
 	</object>
 	<!---->
 
 <!-- 
 # And finally close the pipeline.
 
-Close the root element and save the document to a file ending with ``.pipeline``. To run the pipeline open a console and type ``<path-to-bin>\xmlpipe.exe <filename>``. Or simply double click ``01_hello_world.cmd`` :-) [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-interpreter)
+Close the root element and save the document to a file ending with `.pipeline`. To run the pipeline open a console and type `<path-to-bin>\xmlpipe.exe <filename>`. Or simply double click `01_hello_world.cmd` :-) [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-interpreter)
 -->
 </pipeline>
 <!---->

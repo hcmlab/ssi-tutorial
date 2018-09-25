@@ -32,7 +32,7 @@
     <script src="templates/jquery.sticky-kit.js "></script>
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Johannes Wagner" />
-  <meta name="date" content="2018-09-19" />
+  <meta name="date" content="2018-09-25" />
   <title>02_write_to_disk</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -83,7 +83,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         <span class="doc-title">02_write_to_disk</span>
         <ul class="nav pull-right doc-info">
                     <li><p class="navbar-text">Johannes Wagner</p></li>
-                              <li><p class="navbar-text">2018-09-19</p></li>
+                              <li><p class="navbar-text">2018-09-25</p></li>
                   </ul>
       </div>
     </div>
@@ -104,7 +104,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       </div>
             <div class="span9">
             <h1 id="load-additional-components"><span class="header-section-number">1</span> Load additional components</h1>
-<p>We load two more plug-ins: <code>ioput</code> and <code>control</code>, which give us access to additional components. Check out the <a href="file:///F:/openssi/docs/api/index.html">API</a> to see which are those additional components. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-sensor">[See also]</a></p>
+<p>We load two more plug-ins: <code>ioput</code> and <code>control</code>, which give us access to additional components. Check out the <a href="file:///F:/openssi/docs/api/index.html">API</a> to see which are those additional components. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-component">[See also]</a></p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;register&gt;</span>
     <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;mouse&quot;</span><span class="kw">/&gt;</span>
     <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;graphic&quot;</span><span class="kw">/&gt;</span>        
@@ -129,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Finally, we align the check box by adding one more line to the <code>Decorator</code>. Done! <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization">[See also]</a></p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;Decorator&quot;</span><span class="ot"> icon=</span><span class="st">&quot;true&quot;</span><span class="ot"> title=</span><span class="st">&quot;Pipeline&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;0,0,400,500&quot;</span><span class="kw">&gt;</span>console<span class="kw">&lt;/area&gt;</span>
-    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>plot*<span class="kw">&lt;/area&gt;</span>
+    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>paint*<span class="kw">&lt;/area&gt;</span>
     <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;0,500,50,100&quot;</span><span class="kw">&gt;</span>check<span class="kw">&lt;/area&gt;</span>
 <span class="kw">&lt;/object&gt;</span></code></pre></div>
             </div>

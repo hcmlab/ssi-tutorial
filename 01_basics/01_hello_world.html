@@ -32,7 +32,7 @@
     <script src="templates/jquery.sticky-kit.js "></script>
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Johannes Wagner" />
-  <meta name="date" content="2018-09-17" />
+  <meta name="date" content="2018-09-25" />
   <title>01_hello_world</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -83,7 +83,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         <span class="doc-title">01_hello_world</span>
         <ul class="nav pull-right doc-info">
                     <li><p class="navbar-text">Johannes Wagner</p></li>
-                              <li><p class="navbar-text">2018-09-17</p></li>
+                              <li><p class="navbar-text">2018-09-25</p></li>
                   </ul>
       </div>
     </div>
@@ -121,18 +121,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     <span class="kw">&lt;output</span><span class="ot"> channel=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span> <span class="kw">/&gt;</span>
 <span class="kw">&lt;/sensor&gt;</span></code></pre></div>
 <h1 id="add-some-visualization"><span class="header-section-number">4</span> Add some visualization</h1>
-<p>As mentioned before we can connect to streams by using their pins. Here, we add two graphs to visualize the cursor and button streams during the last 10 seconds. This time, we also assign an id to the instances by adding <code>:&lt;id&gt;</code> after a component's name. In fact, we assign the id <code>plot</code> twice. However, SSI automatically adds a trailing number to keep the two instances apart. Also note that in now we use the <code>consumer</code> tag instead of the <code>sensor</code> tag. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization">[See also]</a></p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;CURSOR&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
+<p>As mentioned before we can connect to streams by using their pins. Here, we add two graphs to visualize the cursor and button streams during the last 10 seconds. This time, we also assign an id to the instances by adding <code>:&lt;id&gt;</code> after a component's name. In fact, we assign the id <code>paint</code> twice. However, SSI automatically adds a trailing number to keep the two instances apart. Also note that in now we use the <code>consumer</code> tag instead of the <code>sensor</code> tag. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization">[See also]</a></p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:paint&quot;</span><span class="ot"> title=</span><span class="st">&quot;CURSOR&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span> <span class="kw">/&gt;</span>        
 <span class="kw">&lt;/consumer&gt;</span>
-<span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;BUTTON&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:paint&quot;</span><span class="ot"> title=</span><span class="st">&quot;BUTTON&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;button&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span> <span class="kw">/&gt;</span>        
 <span class="kw">&lt;/consumer&gt;</span></code></pre></div>
 <h1 id="align-the-windows"><span class="header-section-number">5</span> Align the windows</h1>
-<p>By default all windows will open in the same location on the screen. To move them around an instance of <code>Decorator</code> is added. We refer to instances we want to reposition by their id. In this case, the console (which always has the id <code>console</code>) and the two graphs we just added. By using the wildcard symbol <code>*</code> we refer to both plots and let SSI assemble the two windows in the mentioned area. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization">[See also]</a></p>
+<p>By default all windows will open in the same location on the screen. To move them around an instance of <code>Decorator</code> is added. We refer to instances we want to reposition by their id. In this case, the console (which always has the id <code>console</code>) and the two graphs we just added. By using the wildcard symbol <code>*</code> we refer to both paints and let SSI assemble the two windows in the mentioned area. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization">[See also]</a></p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;Decorator&quot;</span><span class="ot"> icon=</span><span class="st">&quot;true&quot;</span><span class="ot"> title=</span><span class="st">&quot;Pipeline&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;0,0,400,600&quot;</span><span class="kw">&gt;</span>console<span class="kw">&lt;/area&gt;</span>
-    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>plot*<span class="kw">&lt;/area&gt;</span>
+    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>paint*<span class="kw">&lt;/area&gt;</span>
 <span class="kw">&lt;/object&gt;</span></code></pre></div>
 <h1 id="and-finally-close-the-pipeline."><span class="header-section-number">6</span> And finally close the pipeline.</h1>
 <p>Close the root element and save the document to a file ending with <code>.pipeline</code>. To run the pipeline open a console and type <code>&lt;path-to-bin&gt;\xmlpipe.exe &lt;filename&gt;</code>. Or simply double click <code>01_hello_world.cmd</code> :-) <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-interpreter">[See also]</a></p>
