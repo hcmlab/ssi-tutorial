@@ -23,8 +23,8 @@ An SSI pipeline is a XML tree that describes the data flow between a series of c
 	We add a mouse sensor, which offers two streams: the cursor position and whether on or more buttons on the mouse are currently pressed. We connect to both streams and assign unique pins, here `button` and `cursor`. Later we can use these pins to connect the streams with a component. To create the component, we need to know its name. A useful source of information is therefore the [API](file:///F:/openssi/docs/api/index.html) of SSI. It features a list of plug-ins in the left menu. When you click on one, you'll get a list of the embedded components. If you select a component you will see its name, type and options. In case of `Mouse` you will learn that the component is a sensor and that an option `mask` exists. It determines which buttons will fire when clicked by the user. We can overwrite the default value by setting `mask="1"`. Now, as long as the left mouse button is pressed the cursor stream will be 1. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-sensor)
 	-->
 	<sensor create="Mouse" mask="1">
-		<output channel="button" pin="button" />
-		<output channel="cursor" pin="cursor" />
+		<output channel="button" pin="button"/>
+		<output channel="cursor" pin="cursor"/>
 	</sensor>
 	<!---->
 	
@@ -33,10 +33,10 @@ An SSI pipeline is a XML tree that describes the data flow between a series of c
 	As mentioned before we can connect to streams by using their pins. Here, we add two graphs to visualize the cursor and button streams during the last 10 seconds. This time, we also assign an id to the instances by adding `:<id>` after a component's name. In fact, we assign the id `paint` twice. However, SSI automatically adds a trailing number to keep the two instances apart. Also note that in now we use the `consumer` tag instead of the `sensor` tag. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-consumer-visualization)
 	-->
 	<consumer create="SignalPainter:paint" title="CURSOR" size="10.0">
-		<input pin="cursor" frame="0.2s" />		
+		<input pin="cursor" frame="0.2s"/>		
 	</consumer>
 	<consumer create="SignalPainter:paint" title="BUTTON" size="10.0">
-		<input pin="button" frame="0.2s" />		
+		<input pin="button" frame="0.2s"/>		
 	</consumer>	
 	<!---->
 	

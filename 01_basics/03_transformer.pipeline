@@ -16,8 +16,8 @@
 	<!---->
 
 	<sensor create="Mouse" mask="1">
-		<output channel="button" pin="button" />
-		<output channel="cursor" pin="cursor" />
+		<output channel="button" pin="button"/>
+		<output channel="cursor" pin="cursor"/>
 	</sensor>
 	
 	<!-- # Feature and filter
@@ -53,13 +53,13 @@
 	<!---->
 	
 	<consumer create="SignalPainter:paint" title="CURSOR" size="10.0">
-		<input pin="cursor" frame="0.2s" />		
+		<input pin="cursor" frame="0.2s"/>		
 	</consumer>	
 	<consumer create="SignalPainter:paint" title="ENERGY" size="10.0">
-		<input pin="energy" frame="0.2s" />		
+		<input pin="energy" frame="0.2s"/>		
 	</consumer>	
 	<consumer create="SignalPainter:paint" title="AVERAGE" size="10.0">
-		<input pin="average" frame="0.2s" />		
+		<input pin="average" frame="0.2s"/>		
 	</consumer>	
 	
 	<!-- # In-place transformation
