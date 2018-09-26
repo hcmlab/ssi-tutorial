@@ -22,7 +22,7 @@
 		
 	<!-- # Event-based processing
 	
-	Since consumer (other than transformer) do not have an output stream, it is possible to trigger them by events. In that case, a consumer only receives input when an event was fired. To do so, we replace the frame attribute with the address of the according event. When an event with a matching address is fired, the painter will receive a stream, which corresponds to the time slot represented by the event (defined by a start time and a duration in milliseconds). Note that in contrast to previous examples we have removed the size option since now we want to display the received stream in its full length. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-events)		
+	Since consumer (other than transformer) do not have an output stream, it is possible to trigger them by events. In that case, a consumer only receives input when an event was fired. To do so, we replace the frame attribute with the address of the according event. When an event with a matching address is fired, the painter will receive a stream, which corresponds to the time slot represented by the event (defined by a start time and a duration in milliseconds). Note that in contrast to previous examples we have removed the size option since now we want to display the received stream in its full length.		
 	-->	
 	<consumer create="SignalPainter:plot" title="CURSOR">
 		<input pin="cursor" address="click@mouse" state="completed"/>     
@@ -31,7 +31,7 @@
 	
 	<!-- # Events with data
 		
-	Events may hold data. For instance, the component `StringEventSender` converts an input stream to a string and attaches it to a new event. Likewise, `TupleEventSender` fires an event, but attaches float values. Finally, `MapEventSender` assigns an identifier (key) to each dimension. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-events)
+	Events may hold data. For instance, the component `StringEventSender` converts an input stream to a string and attaches it to a new event. Likewise, `TupleEventSender` fires an event, but attaches float values. Finally, `MapEventSender` assigns an identifier (key) to each dimension.
 	-->	
 	<consumer create="StringEventSender" address="mean@string">
 		<input pin="cursor" address="click@mouse"/>
@@ -46,7 +46,7 @@
 	
 	<!-- # Monitor events
 		
-	To monitor when events are created, the component `EventMonitor` displays a list of events within a certain time span. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-events)
+	To monitor when events are created, the component `EventMonitor` displays a list of events within a certain time span.
 	-->	
 	<object create="EventMonitor:monitor" title="EVENTS">
 		<listen address="@" span="10.0s"/>     

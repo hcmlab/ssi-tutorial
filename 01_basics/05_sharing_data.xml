@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+
+<mouse>    
+    <cursor x="$(0{select=0;functional=mean})" y="$(0{select=1;functional=mean})"/>
+    <button>$(1{functional=max;precision=0})</button>
+    <features>$(features@mouse)</features>  
+</mouse>
