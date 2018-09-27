@@ -1,4 +1,4 @@
-import os, argparse, re, sys, subprocess, datetime
+import os, argparse, re, sys, subprocess, datetime, glob
 
 
 def rem_spaces(text, numDel):
@@ -22,10 +22,10 @@ def unindent(text):
     return rem_spaces(text, min(num_spaces(text)))
 
 
-def convert(args):
+def convert(args, path):
 
-    name, _ = os.path.splitext(os.path.basename(args.path))    
-    dir = os.path.dirname(args.path)
+    name, _ = os.path.splitext(os.path.basename(path))    
+    dir = os.path.dirname(path)
     name_pipe = name + '.pipeline'
     path_pipe = os.path.join(dir, name_pipe)
     name_html = name + '.html'
@@ -41,7 +41,7 @@ def convert(args):
 
     with open(path_pipe, 'r')  as fp_pipe, open(path_md, 'w') as fp_md:
 
-        fp_md.write('% {}\n% {}\n% {}\n\n'.format(name, args.author, datetime.datetime.today().strftime('%Y-%m-%d')))
+        fp_md.write('% {}\n% [![]({})](http://openssi.net)\n\n'.format(name, args.logo))
 
         pipe = fp_pipe.read()                
         matches = [m.groups() for m in regex.finditer(pipe)]
@@ -67,9 +67,13 @@ def convert(args):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Convert pipeline to a html document.')
-    parser.add_argument('path', metavar='path', type=str, help='path to pipeline')
-    parser.add_argument('--author', metavar='author', type=str, help='name of author', default='Unkown')
-    parser.add_argument('--bin', metavar='bin', type=str, help='path to binaries', default=r'..\bin')
+    parser.add_argument('path', metavar='path', type=str, help='path to pipeline or a folder with pipelines')
+    parser.add_argument('--logo', metavar='logo', type=str, help='path to logo', default=r'../ssi.png')
+    parser.add_argument('--bin', metavar='bin', type=str, help='path to binaries', default=r'..\bin')    
     args = parser.parse_args()
 
-    convert(args)
+    if os.path.isdir(args.path):
+        for path in glob.glob(os.path.join(args.path, '*.pipeline')):
+            convert(args, path)
+    else:
+        convert(args, args.path)
