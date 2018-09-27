@@ -41,12 +41,15 @@ def convert(args, path):
 
     with open(path_pipe, 'r')  as fp_pipe, open(path_md, 'w') as fp_md:
 
-        fp_md.write('% {}\n% [![]({})](http://openssi.net)\n\n'.format(name, args.logo))
+        fp_md.write('% {} / {}\n% [![]({})](http://openssi.net)\n\n'.format(dir, name, args.logo.replace('\\', '/')))
 
         pipe = fp_pipe.read()                
         matches = [m.groups() for m in regex.finditer(pipe)]
-        for m in matches:
-            fp_md.write('{}\n\n``` xml\n{}\n```\n\n'.format(unindent(m[0]).strip(), unindent(m[1]).strip()))        
+        for m in matches:            
+            if m[0].strip():
+                fp_md.write('{}\n\n'.format(unindent(m[0]).strip()))        
+            if m[1].strip():                
+                fp_md.write('``` xml\n{}\n```\n\n'.format(unindent(m[1]).strip()))                        
         
     print(' > {}'.format(name_md), end='')    
 
@@ -68,7 +71,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Convert pipeline to a html document.')
     parser.add_argument('path', metavar='path', type=str, help='path to pipeline or a folder with pipelines')
-    parser.add_argument('--logo', metavar='logo', type=str, help='path to logo', default=r'../ssi.png')
+    parser.add_argument('--logo', metavar='logo', type=str, help='path to logo', default=r'..\pics\ssi.png')
     parser.add_argument('--bin', metavar='bin', type=str, help='path to binaries', default=r'..\bin')    
     args = parser.parse_args()
 

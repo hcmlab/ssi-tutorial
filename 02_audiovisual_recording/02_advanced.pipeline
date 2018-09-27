@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-16" standalone="yes"?>
+
+<pipeline>
+	
+	<register>		
+		<load name="audio"/>
+		<load name="camera"/>
+		<load name="control"/>
+		<load name="graphic"/>		
+		<load name="ffmpeg"/>		
+	</register>
+	
+	<!-- # Stop button
+	
+	By default, a pipeline stops when a user presses enter in the console. We can overwrite this behavior by adding a stop button. Therefore, we let the pipeline wait for a stop signal of an object with the id `close`. Then we add a `WaitButton`, to which we assign this id.
+	
+	-->
+	<framework waitid="close"/>
+	<runnable create="WaitButton:close" title="button" label="CLOSE"/>	
+	<!---->	
+	
+	<!-- # Record button
+	
+	We add another button, which allows us to start/stop a recording on the fly. Again, we assign ids of the objects that should be controlled by the button. Here, we select all ids starting with `write` and `paint`. Now, when the button is unchecked, the recording and visualization will stop.
+	
+	-->
+	<runnable create="ControlCheckBox:record" id="paint*,write*" label="RECORD" default="false"/>	
+	<!---->	
+	
+	<sensor create="Audio" option="audio" sr="44100" blockInSamples="512">
+		<output channel="audio" pin="audio"/>
+	</sensor>
+	<sensor create="Camera" option="camera" fps="25.0">
+		<output channel="video" pin="video" size="2.0s"/>
+	</sensor>		
+	
+	<!-- # Target path
+	
+	If we run recordings over a longer period, we want to keep track when a recording took place. The variable `$(date)` will be replaced with the a current time stamp, which allows us to create a unique folder for each recording session. We also make use of the variable `$(num,d)` to number successive recordings with `d` trailing zeros.
+	
+	-->
+	<consumer create="FFMPEGWriter:write" path="$(date)\audio_$(num,2).m4a" overwrite="false">
+		<input pin="audio" frame="512"/>		
+	</consumer>
+	<consumer create="FFMPEGWriter:write" path="$(date)\video_$(num,2).mp4" overwrite="false">
+		<input pin="video;audio" frame="1"/>		
+	</consumer>	
+	<!---->	
+	
+	<consumer create="SignalPainter:paint" title="AUDIO" size="10" type="2">
+		<input pin="audio" frame="512"/>
+	</consumer>
+	<consumer create="VideoPainter:paint" title="VIDEO">
+		<input pin="video" frame="1"/>
+	</consumer>		
+	
+	<object create="Decorator" icon="true" title="Pipeline">	
+		<area pos="0,0,400,500">console</area>		
+		<area pos="400,0,400,600">paint*</area>		
+		<area pos="0,500,400,100" nv="1">close,record</area>				
+	</object>	
+		
+</pipeline>

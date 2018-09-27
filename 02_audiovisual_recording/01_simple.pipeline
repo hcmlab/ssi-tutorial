@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-16" standalone="yes"?>
+
+<pipeline>
+	
+	<register>		
+		<load name="audio"/>
+		<load name="camera"/>
+		<load name="control"/>
+		<load name="graphic"/>		
+		<load name="ffmpeg"/>		
+	</register>
+	
+	<!-- # Adding sensors 
+	
+	We connect an audio and a camera sensor and set the desired sample rates. We instruct the audio sensor to read in blocks of 512 samples. In case of the camera sensor, we reduce the buffer size from 10 (default) to 2 seconds, which reduces the memory load.	
+	
+	-->
+	<sensor create="Audio" option="audio" sr="44100" blockInSamples="512">
+		<output channel="audio" pin="audio"/>
+	</sensor>
+	<sensor create="Camera" option="camera" fps="25.0">
+		<output channel="video" pin="video" size="2.0s"/>
+	</sensor>	
+	<!---->
+	
+	<!-- # Storing media
+	
+	The component `FFMPEGWriter` allows us to store audio and/or video streams. The desired code is determined from the extension of the file name. If a file already exists it will be overwritten.
+	
+	-->
+	<consumer create="FFMPEGWriter:write" path="audio.m4a" overwrite="true">
+		<input pin="audio" frame="512"/>		
+	</consumer>
+	<consumer create="FFMPEGWriter:write" path="video.mp4" overwrite="true">
+		<input pin="video;audio" frame="1"/>		
+	</consumer>	
+	<!---->	
+	
+	<!-- # Visualizing media
+	
+	To check what is being recorded, we add two windows. At run-time, a click on the pipeline icon in the system tray will show a dialog, which allows us to hide/show the windows at any time.	
+	
+	-->	
+	<consumer create="SignalPainter:paint" title="AUDIO" size="10" type="2">
+		<input pin="audio" frame="512"/>
+	</consumer>
+	<consumer create="VideoPainter:paint" title="VIDEO">
+		<input pin="video" frame="1"/>
+	</consumer>		
+	<object create="Decorator" icon="true" title="Pipeline">	
+		<area pos="0,0,400,500">console</area>		
+		<area pos="400,0,400,600">paint*</area>				
+	</object>	
+	<!---->
+		
+</pipeline>
+
+<!-- # Device selection
+
+When we start the pipeline for the first time, you will be asked to select a audio and camera device. The information will be stored in option files in the folder of the pipeline. Delete the files if you want to switch to another device at some point (if a device is no longer available, the dialog will automatically pop up again). In case of the camera, you will also have to select the media type. Make sure to select a media type that supports the desired resolution (width x height). The dialog will also display the native frames per second. Note that SSI may still read with a different sample rate (the one set in the options of the camera device), but possibly duplicate or drop frames.
+
+![](../pics/camera.png)
+--><!---->
+

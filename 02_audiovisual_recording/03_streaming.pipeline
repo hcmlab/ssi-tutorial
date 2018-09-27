@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-16" standalone="yes"?>
+
+<pipeline>
+	
+	<register>		
+		<load name="audio"/>
+		<load name="camera"/>
+		<load name="control"/>
+		<load name="graphic"/>		
+		<load name="ffmpeg"/>		
+	</register>
+	
+	<framework waitid="close"/>
+	<runnable create="WaitButton:close" title="button" label="CLOSE"/>	
+	<runnable create="ControlCheckBox:record" id="paint*,write*" label="STREAM" default="false"/>	
+
+	<sensor create="Audio" option="audio" sr="$(audio:sr)" blockInSamples="512">
+		<output channel="audio" pin="audio_send"/>
+	</sensor>
+	<sensor create="Camera" option="camera" fps="$(video:fps)">
+		<output channel="video" pin="video_send" size="2.0s"/>
+	</sensor>		
+	
+	<!-- # Sender
+	
+	Instead of writing the media to a file, we can also stream into a network. To reduce bandwidth, a suited streaming codex will be automatically selected.
+	
+	-->	
+	<consumer create="FFMPEGWriter" url="udp://127.0.0.1:2222" format="mpegts" stream="true">
+		<input pin="video_send" frame="1" />
+	</consumer>	
+	<consumer create="FFMPEGWriter" url="udp://127.0.0.1:3333" format="mpegts" stream="true">
+		<input pin="audio_send" frame="0.04s" />
+	</consumer>	
+	<!---->
+	
+	<!-- # Receiver
+	
+	For simplicity, we receive the streams in the same pipeline (usually we would run a second pipeline on another machine). Note, that we have to explicitly set sample rate and video resolution of the incoming streams. 
+	
+	-->		
+	<sensor create="FFMPEGReader" url="udp://127.0.0.1:2222" fps="$(video:fps)" width="$(video:width)" height="$(video:height)" stream="true">		
+		<output channel="video" pin="video_recv" size="2.0s"/>
+	</sensor>
+	<sensor create="FFMPEGReader" url="udp://127.0.0.1:3333" asr="$(audio:sr)" stream="true">		
+		<output channel="audio" pin="audio_recv" size="2.0s"/>
+	</sensor>	
+	<!---->	
+	
+	<consumer create="SignalPainter:paint" title="AUDIO" size="10" type="2">
+		<input pin="audio_recv" frame="512"/>
+	</consumer>
+	<consumer create="VideoPainter:paint" title="VIDEO">
+		<input pin="video_recv" frame="1"/>
+	</consumer>		
+	
+	<object create="Decorator" icon="true" title="Pipeline">	
+		<area pos="0,0,400,500">console</area>		
+		<area pos="400,0,400,600">paint*</area>		
+		<area pos="0,500,400,100" nv="1">close,record</area>				
+	</object>	
+		
+</pipeline>

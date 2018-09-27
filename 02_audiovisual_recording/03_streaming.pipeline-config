@@ -1,0 +1,4 @@
+audio:sr = 44100
+video:fps = 25.0
+video:width = 640
+video:height = 480
