@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<pipeline>
+
+	<register>
+		<load name="camera" />		
+		<load name="graphic" />	
+		<load name="openface" />		
+		<load name="ioput" />
+		<load name="signal" />
+	</register>	
+		
+	<sensor create="Camera" option="camera" flip="true">
+		<output channel="video" pin="video" size="2.0s"/>
+	</sensor>
+	<transformer create="Openface:openface"  
+		modelPath="model" 
+		triPath="model\tris_68_full.txt" 
+		auPath="model\AU_predictors\AU_all_best.txt">
+		<input pin="video" frame="1"/>
+		<output pin="openface"/>
+	</transformer>
+
+	<transformer create="OpenfacePainter:painter">
+		<input pin="video;openface" frame="1"/>		
+		<output pin="video_openface"/>
+	</transformer>
+	<consumer create="VideoPainter:video" flip="false">
+		<input pin="video_openface" frame="1"/>
+	</consumer>
+	
+	<!-- # Select action unit
+			
+	Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouse, the `lip corner puller` might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a `Selector` and setting, e.g., `indides=8`.
+	-->
+	<transformer create="OpenfaceSelector:selector" aureg="true">
+		<input pin="openface" frame="1"/>
+		<output pin="action_units"/>		
+	</transformer>
+	<transformer create="Selector:selector" indices="8">
+		<input pin="action_units" frame="1"/>	
+		<output pin="sel_action_unit"/>
+	</transformer>
+	<!---->
+	
+	<!-- # Lowpass filter
+
+	When observing the bar plots of the action units you have probably noticed that there is quite some jittering. To get a stable signal, we add a [Butterworth filter](https://en.wikipedia.org/wiki/Butterworth_filter). Since we want to remove the high frequencies, we set it to a lowpass filter and choose the cutoff frequency to be 10% of the [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency) (play around with the value to increase or decrease the smoothing factor).	
+	-->
+	<transformer create="Butfilt" type="0" order="3" low="0.1" zero="true">
+		<input pin="sel_action_unit" frame="0.1s"/>
+		<output pin="sel_action_unit_low"/>
+	</transformer>
+	<!---->
+	
+	<!-- # Visualization
+	
+	To get an impression how well the smoothing works, we visualize the raw and the low-passed action unit. Now, when you change from a neutral to a smiling face and back, the red bar should raise and fall accordingly.
+	-->
+	<consumer create="SignalPainter:plot" title="SMILE FEATURE" type="4">
+		<input pin="sel_action_unit" frame="1"/>			
+	</consumer>	
+	<consumer create="SignalPainter:plot" title="SMILE FEATURE (LOW)" type="4">
+		<input pin="sel_action_unit_low" frame="1"/>			
+	</consumer>	
+	<!---->
+
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,800">console</area>
+		<area pos="400,0,640,480">video*</area>		
+		<area pos="400,480,640,320" nv="1">plot*</area>	
+	</object>
+		
+</pipeline>
+

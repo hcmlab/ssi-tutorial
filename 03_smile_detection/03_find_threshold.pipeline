@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<pipeline>
+
+	<register>
+		<load name="camera" />		
+		<load name="graphic" />	
+		<load name="openface" />		
+		<load name="ioput" />
+		<load name="signal" />
+	</register>	
+		
+	<sensor create="Camera" option="camera" flip="true">
+		<output channel="video" pin="video" size="2.0s"/>
+	</sensor>
+	<transformer create="Openface:openface"  
+		modelPath="model" 
+		triPath="model\tris_68_full.txt" 
+		auPath="model\AU_predictors\AU_all_best.txt">
+		<input pin="video" frame="1"/>
+		<output pin="openface"/>
+	</transformer>
+
+	<transformer create="OpenfacePainter:painter">
+		<input pin="video;openface" frame="1"/>		
+		<output pin="video_openface"/>
+	</transformer>
+	<consumer create="VideoPainter:video" flip="false">
+		<input pin="video_openface" frame="1"/>
+	</consumer>
+	
+	<transformer create="OpenfaceSelector:selector" aureg="true">
+		<input pin="openface" frame="1"/>
+		<output pin="action_units"/>		
+	</transformer>
+	<transformer create="Selector:selector" indices="8">
+		<input pin="action_units" frame="1"/>	
+		<output pin="sel_action_unit"/>
+	</transformer>
+		<transformer create="Butfilt" type="0" order="3" low="0.1" zero="true">
+		<input pin="sel_action_unit" frame="0.1s"/>
+		<output pin="sel_action_unit_low"/>
+	</transformer>	
+	
+	<!-- # Find a threshold
+	
+	Now, we want to find a good threshold for our action unit that helps us differentiating between a neutral and a smiling face. Therefore, we use a component named `MvgPeakGate`. When the pipelines starts, it observes the signal for some time to initialize the threshold. During this period (here 10 seconds), you should be tracked most of the time and you can do anything *but* smile. After the initialization phase the threshold will be subtracted from the signal and set to 0 if the result is negative. Note that the threshold will still be dynamically adapted if the the input is below the threshold. It is calculated by keeping the average of the signal and adding a moving standard deviation on top. The current values will be displayed in a separate window.
+	-->
+	<transformer create="MvgPeakGate:gate" thres="2" method="1" win="5" monitor="true">
+		<input pin="sel_action_unit_low" frame="0.2s" />
+		<output pin="sel_action_unit_cut" />
+	</transformer>
+	<!---->
+	
+	<!-- # Trigger event
+	
+	After applying the threshold to our signal, we can easily convert it to an event. We add a `TriggerEventSender`, which will detect an onset when the input value becomes greater than 0 and an offset when it falls below 0 again. Then an event with the according start time and duration will be sent. We also add plots to compare the original and the cut version of the action unit, as well as, a monitor to visualize the detected smile events.
+	-->
+	<consumer create="TriggerEventSender:trigger" minDuration="0.3" address="smile@trigger" >
+		<input pin="sel_action_unit_cut" frame="0.2s"/>		
+	</consumer>
+	<consumer create="SignalPainter:plot" title="SMILE FEATURE (LOW)" type="4">
+		<input pin="sel_action_unit_low" frame="1"/>			
+	</consumer>	
+	<consumer create="SignalPainter:plot" title="SMILE FEATURE (LOW)" type="5">
+		<input pin="sel_action_unit_cut" frame="1"/>			
+	</consumer>	
+	<object create="EventMonitor:monitor">
+		<listen address="smile@trigger" span="20000" />
+	</object>	
+	<!---->
+	
+	<!-- # Save annotations
+	
+	Finally, we can store the detected smile events in an annotation. In addition, we store the raw action units. Later, this will allows us to apply machine learning and train a smile classifier. The files will be stored in a folder `data`.
+	-->
+	<object create="FileAnnotationWriter:writer" 
+		path="data\smile" 
+		defaultSchemeName="smile" 
+		addUnkownLabel="true" 
+		eventNameAsLabel="true">
+		<listen address="smile@trigger"/>
+	</object>	
+	<consumer create="FileWriter" path="data\action_units">
+		<input pin="action_units" frame="1"/>
+	</consumer>
+	<!---->	
+
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,800">console</area>
+		<area pos="400,0,640,480">video*</area>		
+		<area pos="400,480,640,320" nv="1">plot*</area>	
+		<area pos="1040,0,400,480">monitor</area>
+		<area pos="1040,480,400,320">gate</area>
+	</object>
+		
+</pipeline>
+
+<!-- # View annotations
+
+Annotations and stream files (as well as other media) can be displayed in [Nova](https://github.com/hcmlab/nova), a tool for annotating and analyzing behaviors in social interactions. Check out the software, it is really cool!
+	
+![](../pics/smile.png)
+--><!---->
+
