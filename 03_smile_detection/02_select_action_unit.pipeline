@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
+
 <pipeline>
 
 	<register>
-		<load name="camera" />		
-		<load name="graphic" />	
-		<load name="openface" />		
-		<load name="ioput" />
-		<load name="signal" />
+		<load name="camera"/>		
+		<load name="graphic"/>	
+		<load name="openface"/>		
+		<load name="ioput"/>
+		<load name="signal"/>
 	</register>	
 		
 	<sensor create="Camera" option="camera" flip="true">

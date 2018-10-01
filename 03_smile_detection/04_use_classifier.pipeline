@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<!-- # Train model
+
+Now, we want to use the annotation we created in the last step to train a classification model. The script file `smile_train.cmd` will run the training procedure and has to be executed before pipeline. It performs two steps:
+
+* It calls the tool `xmlchain.exe` to create a [sample list](https://rawgit.com/hcmlab/ssi/master/docs/index.html#training-data) (`data\smile.samples`). A sample consists of a feature vector and a label. To create the samples it therefore maps the annotation (`data\smile.annotation`) to the stream of action units (`data\action_units.stream`). It continuously picks 5 successive action unit vectors from the stream and takes the corresponding label from the annotation (`smile` if a smile was detected and `no smile` otherwise). To reduce the sequence to a single feature vector, it further applies the [feature chain](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-transformer-chain) stored in `smile_features.chain`. Note that here we use the full set of action units as input (and not just one as in case of the threshold solution). Since several action units are involved in the production of a smile, this hopefully will make our model more robust.
+
+* Next, it calls the tool `xmltrain.exe` to train the classifier. Therefore, it uses the [trainer template](https://rawgit.com/hcmlab/ssi/master/docs/index.html#trainer-template) stored as `smile_template.trainer`. It basically points to the sample list that was just created and defines a classification model (here we use the free [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) library). The result will be stored in as `smile.trainer`.
+--><!---->
+<pipeline>
+
+	<register>
+		<load name="camera"/>		
+		<load name="graphic"/>	
+		<load name="openface"/>		
+		<load name="ioput"/>
+		<load name="signal"/>
+		<load name="model"/>
+	</register>	
+		
+	<sensor create="Camera" option="camera" flip="true">
+		<output channel="video" pin="video" size="2.0s"/>
+	</sensor>
+	<transformer create="Openface:openface"  
+		modelPath="model" 
+		triPath="model\tris_68_full.txt" 
+		auPath="model\AU_predictors\AU_all_best.txt">
+		<input pin="video" frame="1"/>
+		<output pin="openface"/>
+	</transformer>
+
+	<transformer create="OpenfacePainter:painter">
+		<input pin="video;openface" frame="1"/>		
+		<output pin="video_openface"/>
+	</transformer>
+	<consumer create="VideoPainter:video" flip="false">
+		<input pin="video_openface" frame="1"/>
+	</consumer>
+	
+	<transformer create="OpenfaceSelector:selector" aureg="true">
+		<input pin="openface" frame="1"/>
+		<output pin="action_units"/>		
+	</transformer>
+	
+	<!-- # Add classifier
+	
+	Now that we have a classification model, we can add a `Classifier`. It loads the model and returns the classification result as an event. As input we use the raw action units and make sure that we set the same frames size and feature chain, which we had used during the extraction of the features.
+	-->
+	<consumer create="Classifier" path="smile" address="smile@classifier">
+		<input pin="action_units" frame="5">
+			<transformer create="Chain" path="smile_features"/>
+		</input>
+	</consumer>	
+	<!---->
+	
+	<!-- # Plotting events
+	
+	To visualize the result of the classification, we finally add an instance of `EventPainter`. It will display two bars, one showing the probability that a smile was detected and one that that no smile was detected.
+	-->
+	<object create="EventPainter:plot" title="SMILE" 
+		type="1" 
+		autoscale="false" 
+		global="true" 
+		reset="false">
+		<listen address="smile@classifier"/>			
+	</object>		
+	<!---->
+
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,800">console</area>
+		<area pos="400,0,640,480">video*</area>		
+		<area pos="400,480,640,320" nv="1">plot*</area>	
+		<area pos="1040,0,400,480">monitor</area>
+		<area pos="1040,480,400,320">gate</area>
+	</object>
+		
+</pipeline>
+
+

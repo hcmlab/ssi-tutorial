@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
+
 <pipeline>
 
 	<register>
-		<load name="camera" />		
-		<load name="graphic" />	
-		<load name="openface" />		
-		<load name="ioput" />
+		<load name="camera"/>		
+		<load name="graphic"/>	
+		<load name="openface"/>		
+		<load name="ioput"/>
 	</register>	
 		
 	<!-- # Face tracker

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<chain>
+	<register>
+		<item name="signal"/>
+	</register>
+	<filter>	
+		<item create="Butfilt" type="0" order="3" low="0.1" zero="true"/>		
+	</filter>
+	<feature>
+		<item create="Functionals" names="mean energy min max"/>		
+	</feature>
+</chain>

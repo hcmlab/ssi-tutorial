@@ -23,6 +23,8 @@ rem %DST%Scripts\easy_install.exe termcolor
 rem %DST%Scripts\pip.exe install tensorflow%GPU%==1.8.0
 rem %DST%Scripts\pip.exe install librosa
 %DST%wget.exe %SRC%xmlpipe.exe -O %DST%xmlpipe.exe 
+%DST%wget.exe %SRC%xmlchain.exe -O %DST%xmlchain.exe 
+%DST%wget.exe %SRC%xmltrain.exe -O %DST%xmltrain.exe 
 
 %DST%python pipe2html.py 01_basics
 %DST%python pipe2html.py 02_audiovisual_recording
