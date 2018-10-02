@@ -16,6 +16,8 @@ set DST=bin\
 %DST%wget.exe -q %SRC%python%PYTHON_VER%._pth -O %DST%python%PYTHON_VER%._pth
 %DST%wget.exe -q https://bootstrap.pypa.io/get-pip.py -O %DST%get-pip.py
 %DST%python %DST%get-pip.py
+%DST%Scripts\pip.exe install numpy
+%DST%Scripts\pip.exe install scipy
 rem %DST%python %DST%has_gpu.py > %DST%has_gpu.txt
 rem set /p GPU=<%DST%has_gpu.txt
 rem %DST%Scripts\pip.exe install tensorflow%GPU%==1.8.0

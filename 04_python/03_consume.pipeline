@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<pipeline>
+
+	<register>
+		<load name="python"/>		
+		<load name="graphic"/>
+	</register>	
+	
+	<sensor create="PythonSensor" script="ecg" block="0.1">
+		<output channel="ecg" pin="ecg"/>		
+	</sensor>	
+		
+	<transformer create="PythonFilter" script="detrend">
+		<input pin="ecg" frame="0.5s"/>
+		<output pin="ecg_detrend"/>
+	</transformer>
+	
+	<!-- # Finding peaks
+	
+	To find the peaks in a signal, we can use the Scipy function [`find_peaks`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html). The result is a list with the positions of the detected peaks. The parameter `prominence` sets a threshold for the prominence of the peaks that will be detected. In addition, we also define a minimum and maximum rate that we want to accept. To allow the user to change these values, we keep them as options that can be changed from the pipeline. To this end, we add a function `getOptions` to our script:
+	
+	\input{path=peaks.py;function=getOptions;type=python}
+	
+	Since we want to output the position of the last peak and the calculate rate as events, we also register two event addresses:
+	
+	\input{path=peaks.py;function=getEventAddress;type=python}
+	
+	We then add a function `consume_enter` where we initialize the position of the last peak and a counter that keep track of the number of processed samples. The function will be called once before the processing starts.
+	
+	\input{path=peaks.py;function=consume_enter;type=python}
+	
+	Within the function `consume` we then call `find_peaks` to identify peak candidates. After each call, we update the last peak position and the counter.
+	
+	\input{path=peaks.py;function=consume;type=python}	
+		
+	For every peak we detect we calculate the distance to its preprocessor. If the rate is within the limits, we send two events with the rate and the position of the peak. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-events)
+	
+	\input{path=peaks.py;function=send_rate;type=python}
+	
+	Finally, we insert the script in the pipeline using a `PythonConsumer`. Note how we use `optsstr` to overwrite the default options from script. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-consumer)
+		
+	-->
+	<consumer create="PythonConsumer" 
+		script="peaks" 
+		optsstr="prominence=0.75;min_rate=55;max_rate=180">
+		<input pin="ecg_detrend" frame="0.5s"/>			
+	</consumer>			
+	<!---->		
+	
+	<!-- # Visualization 	
+	
+	In addition to the signal plots, we visualize the latest peak and rate events using a `XMLEventSender`. If wished, the XML string could be shared with other applications. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-advanced-network-xmlsender)
+	-->		
+	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
+		<input pin="ecg" frame="0.5s"/>		
+	</consumer>		
+	<consumer create="SignalPainter:plot" title="ECG (detrend)" size="10.0">
+		<input pin="ecg_detrend" frame="0.5s"/>		
+	</consumer>		
+	<object create="XMLEventSender:plot" path="output" monitor="true" address="xml@ecg">
+		<listen address="peak,rate@ecg"/>
+	</object>		
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600" nh="1">plot*</area>
+	</object>	
+	<!---->
+
+</pipeline>

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<ecg>    
+    <peak>$(peak@ecg)</peak>
+    <rate>$(rate@ecg)</rate>  
+</ecg>

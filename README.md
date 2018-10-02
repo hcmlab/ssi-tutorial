@@ -43,7 +43,7 @@ If you wish to insert code from another file, you can use the following syntax:
 \input{path=name.ext;lines=[4,5,6];type=xml}
 ```
 
-The `lines` parameter will be evaluated as Python expression, i.e. you can do things like `lines=[1,4] + list(range(12,15))`. If it is not given, the whole file will be inserted. Type will be used to apply proper syntax highlighting and can be omitted, too. If the input file is a Python file, you can replaces `lines=...` with `function=fun_name`.
+The parameter `lines` will be evaluated as Python expression, i.e. you can do things like `lines=[1,4] + list(range(12,15))`. If it is missing, the whole file will be inserted. The parameter `type` will be used to apply proper syntax highlighting and can be omitted, too. If the input file is a Python file, you can replaces `lines=...` with `function=fun_name`.
 
 Enjoy!
 

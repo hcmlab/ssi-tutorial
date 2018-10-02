@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!-- # R peak
+
+The so called R peak is the most prominent part of an ECG and can be used to measure the heart beat. All we have to do is calculate the distance of two successive R peaks. Hence, we have to identify the positions of R peaks in the first place.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/280px-SinusRhythmLabels.svg.png)
+--><!---->
+
+<pipeline>
+
+	<register>
+		<load name="python"/>		
+		<load name="graphic"/>
+	</register>	
+	
+	<sensor create="PythonSensor" script="ecg" block="0.1">
+		<output channel="ecg" pin="ecg"/>		
+	</sensor>	
+		
+	<!-- # Detrend the signal
+	
+	Since the R peak is usually the highest peak within a single ECG turn, we have to look for the highest peaks within a window. However, since the baseline of the original ECG is constantly floating up and down, we have to detrend the signal first. To this end, Scipy provides the function [`detrend`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.detrend.html), which removes linear trends from the input data. We therefore implement a function `transform` (note how we convert the streams to Numpy arrays): 
+	
+	\input{path=detrend.py;function=transform;type=python}
+	
+	Then, we hand the script over to `PythonFilter`. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-transformer)
+	-->
+	<transformer create="PythonFilter" script="detrend">
+		<input pin="ecg" frame="0.5s"/>
+		<output pin="ecg_detrend"/>
+	</transformer>
+	<!---->	
+		
+	<!-- # Visualization 	
+	
+	Finally, we plot the original and the processed signal for comparison.
+	-->			
+	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
+		<input pin="ecg" frame="0.5s"/>		
+	</consumer>		
+	<consumer create="SignalPainter:plot" title="ECG (detrend)" size="10.0">
+		<input pin="ecg_detrend" frame="0.5s"/>		
+	</consumer>		
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>
+	</object>	
+	<!---->
+
+</pipeline>

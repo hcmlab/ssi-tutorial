@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!-- # Introduction
+
+In this tutorial we want to explore SSI's interface to [Python](https://www.python.org/). We will do this by means of a pipeline that processes an Electrocardiogram (ECG) signal. However, instead of using native components as in previous examples, we will write most components from scratch. This is where Python comes in. In SSI a Python [component](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-components) is basically a collection of functions, which are called in a certain order. When SSI reads in a Python script it looks which of the relevant functions are available (some functions are optional, while others are mandatory). At run-time SSI will outsource the processing to these functions.
+--><!---->
+
+<!-- # Scipy and Numpy
+
+[Scipy](https://www.scipy.org/) is a Python library that provides many user-friendly and efficient numerical routines such as routines for numerical integration and optimization. In this tutorial we will make heavy use of Scipy, as well as, [Numpy](http://www.numpy.org/), which is the fundamental package for scientific computing with Python. Both, Scipy and Numpy have been pre-installed in this standalone version of SSI. Read [this](https://rawgit.com/hcmlab/ssi/master/docs/index.html#installation-1) how to install other Python packages.
+--><!---->
+
+<pipeline>
+
+	<register>
+		<load name="python"/>		
+		<load name="graphic"/>
+	</register>	
+	
+	<!-- # Electrocardiogram sensor
+		
+	An [Electrocardiogram](https://en.wikipedia.org/wiki/Electrocardiography) (ECG) measures the electrical activity of the heart. In the following we want to calculate the heart rate from an ECG signal. To input the signal into our pipeline, we have to write a script that implements several functions. 
+
+	The function `getChannelNames` simply outputs channel names and a help string:
+	
+	\input{path=ecg.py;function=getChannelNames;type=python}
+	
+	The function `initChannel` defines the stream dimension, value type and sample rate:
+
+	\input{path=ecg.py;function=initChannel;type=python}
+	
+	The previous functions tell SSI what kind of streams are provided by the script. Then, before the processing actually starts, the function `connect` is called, which we use to load the ECG and initialize a counter to memorize the current read position. Note that we store both variables in a dictionary `vars` (this way we prevent conflicts between multiple instances of the same script).
+	
+	\input{path=ecg.py;function=connect;type=python}
+	
+	Afterwards, SSI loops the function `read`. In each cycle we get the signal from `vars` and write the next n values to the object `sout`. The type of the object is `ssipystream`, which is one of several [types](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-types) that are used to share data between SSI and Python.
+	
+	\input{path=ecg.py;function=read;type=python}
+	
+	To add the script to the pipeline, we add an instance of `PythonSensor`. Here, we use the option `block` we define how many seconds of data we want to read during a cycle. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-sensor)	
+	-->	
+	<sensor create="PythonSensor" script="ecg" block="0.1">
+		<output channel="ecg" pin="ecg"/>		
+	</sensor>
+	<!---->	
+	
+	<!-- # Visualization 	
+	
+	Finally, we would like to visualize the ECG signal. Although, it is generated with a Python script, we can of course process it in the usual way.	
+	-->
+	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
+		<input pin="ecg" frame="0.2s"/>		
+	</consumer>		
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>
+	</object>
+	<!---->	
+
+</pipeline>
