@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 
 <ecg>    
-    <peak>$(peak@ecg)</peak>
+    <peak>$(peak@ecg{precision=0})</peak>
     <rate>$(rate@ecg)</rate>  
 </ecg>
