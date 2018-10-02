@@ -26,6 +26,6 @@ rem %DST%Scripts\pip.exe install librosa
 %DST%wget.exe %SRC%xmlchain.exe -O %DST%xmlchain.exe 
 %DST%wget.exe %SRC%xmltrain.exe -O %DST%xmltrain.exe 
 
-%DST%python pipe2html.py 01_basics
+%DST%python pipe2html.py 01_hello_world
 %DST%python pipe2html.py 02_audiovisual_recording
 %DST%python pipe2html.py 03_smile_detection
