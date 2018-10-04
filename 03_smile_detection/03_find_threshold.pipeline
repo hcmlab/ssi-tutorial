@@ -45,6 +45,7 @@
 	<!-- # Find a threshold
 	
 	Now, we want to find a good threshold for our action unit that helps us differentiating between a neutral and a smiling face. Therefore, we use a component named `MvgPeakGate`. When the pipelines starts, it observes the signal for some time to initialize the threshold. During this period (here 10 seconds), you should be tracked most of the time and you can do anything *but* smile. After the initialization phase the threshold will be subtracted from the signal and set to 0 if the result is negative. Note that the threshold will still be dynamically adapted if the the input is below the threshold. It is calculated by keeping the average of the signal and adding a moving standard deviation on top. The current values will be displayed in a separate window.
+	
 	-->
 	<transformer create="MvgPeakGate:gate" thres="2" method="1" win="5" monitor="true">
 		<input pin="sel_action_unit_low" frame="0.2s" />
@@ -55,6 +56,7 @@
 	<!-- # Trigger event
 	
 	After applying the threshold to our signal, we can easily convert it to an event. We add a `TriggerEventSender`, which will detect an onset when the input value becomes greater than 0 and an offset when it falls below 0 again. Then an event with the according start time and duration will be sent. We also add plots to compare the original and the cut version of the action unit, as well as, a monitor to visualize the detected smile events.
+	
 	-->
 	<consumer create="TriggerEventSender:trigger" minDuration="0.3" address="smile@trigger" >
 		<input pin="sel_action_unit_cut" frame="0.2s"/>		
@@ -73,6 +75,7 @@
 	<!-- # Save annotations
 	
 	Finally, we can store the detected smile events in an annotation. In addition, we store the raw action units. Later, this will allows us to apply machine learning and train a smile classifier. The files will be stored in a folder `data`.
+	
 	-->
 	<object create="FileAnnotationWriter:writer" 
 		path="data\smile" 
@@ -101,5 +104,6 @@
 Annotations and stream files (as well as other media) can be displayed in [Nova](https://github.com/hcmlab/nova), a tool for annotating and analyzing behaviors in social interactions. Check out the software, it is really cool!
 	
 ![](../pics/smile.png)
+
 --><!---->
 

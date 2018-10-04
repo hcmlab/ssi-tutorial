@@ -55,6 +55,7 @@
 	<!-- # Merging streams
 	
 	Next, we combine the three sources into a single stream and apply again some smoothing.	
+	
 	-->
 	<transformer create="Merge" dims="5">
 		<input pin="vad;gender;laugh" frame="1"/>
@@ -74,6 +75,7 @@
 	\input{path=vadex.py;function=transform;type=python}	
 	
 	We add a `PythonFilter` to apply the script to the raw audio input.
+	
 	-->
 	<transformer create="PythonFilter" script="vadex" syspath=".">
 		<input pin="merged_avg" frame="1"/>

@@ -3,11 +3,13 @@
 <!-- # Introduction
 
 In this tutorial we want to explore SSI's interface to [Python](https://www.python.org/). We will do this by means of a pipeline that processes an Electrocardiogram (ECG) signal. However, instead of using native components as in previous examples, we will write most components from scratch. This is where Python comes in. In SSI a Python [component](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-components) is basically a collection of functions, which are called in a certain order. When SSI reads in a Python script it looks which of the relevant functions are available (some functions are optional, while others are mandatory). At run-time SSI will outsource the processing to these functions.
+
 --><!---->
 
 <!-- # Scipy and Numpy
 
 [Scipy](https://www.scipy.org/) is a Python library that provides many user-friendly and efficient numerical routines such as routines for numerical integration and optimization. In this tutorial we will make heavy use of Scipy, as well as, [Numpy](http://www.numpy.org/), which is the fundamental package for scientific computing with Python. Both, Scipy and Numpy have been pre-installed in this standalone version of SSI. Read [this](https://rawgit.com/hcmlab/ssi/master/docs/index.html#installation-1) how to install other Python packages.
+
 --><!---->
 
 <pipeline>
@@ -38,6 +40,7 @@ In this tutorial we want to explore SSI's interface to [Python](https://www.pyth
 	\input{path=ecg.py;function=read;type=python}
 	
 	To add the script to the pipeline, we add an instance of `PythonSensor`. Here, we use the option `block` we define how many seconds of data we want to read during a cycle. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-sensor)	
+	
 	-->	
 	<sensor create="PythonSensor" script="ecg" block="0.1">
 		<output channel="ecg" pin="ecg"/>		
@@ -47,6 +50,7 @@ In this tutorial we want to explore SSI's interface to [Python](https://www.pyth
 	<!-- # Visualization 	
 	
 	Finally, we would like to visualize the ECG signal. Although, it is generated with a Python script, we can of course process it in the usual way.	
+	
 	-->
 	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
 		<input pin="ecg" frame="0.2s"/>		

@@ -51,6 +51,7 @@
 	<!-- # Visualization 	
 	
 	In addition to the signal plots, we visualize the latest peak and rate events using a `XMLEventSender`. If wished, the XML string could be shared with other applications. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-advanced-network-xmlsender)
+	
 	-->		
 	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
 		<input pin="ecg" frame="0.5s"/>		

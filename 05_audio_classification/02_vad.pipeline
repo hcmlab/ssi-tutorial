@@ -64,6 +64,7 @@
 	\input{path=model.py;function=transform;type=python}	
 	
 	We add a `PythonFeature` to apply the script to the raw audio input.
+	
 	-->
 	<transformer create="PythonFeature" script="model" syspath="." optsstr="path=$(model:path)">
 		<input pin="audio" frame="8000" delta="40000"/>
@@ -75,6 +76,7 @@
 	<!-- # Smoothing
 	
 	To smooth the output of the network, we also add a moving average.	
+	
 	-->
 	<transformer create="MvgAvgVar" format="1" method="2" win="3.0">
 		<input pin="vad_raw" frame="1"/>
@@ -85,6 +87,7 @@
 	<!-- # Output 
 	
 	If we want to share the result with an external application, we create an XML string that holds the current detection result and publish it on a socket connection.	
+	
 	-->
 	<gate open="$(send:do)">
 		<consumer create="XMLEventSender:monitor" address="vad@xml" path="vad.xml" monitor="true" mname="XML" console="false" update="100" coldelim=" ">
@@ -105,6 +108,7 @@
 	<!-- # Visualization
 	
 	Finally, we add a bar plot to visualize the predictions.
+	
 	-->	
 	<consumer create="SignalPainter:plot" title="AUDIO" size="10" type="2">
 		<input pin="audio" frame="0.2s" delta="0"/>

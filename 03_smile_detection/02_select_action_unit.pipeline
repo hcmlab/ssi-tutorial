@@ -32,6 +32,7 @@
 	<!-- # Select action unit
 			
 	Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouse, the `lip corner puller` might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a `Selector` and setting, e.g., `indides=8`.
+	
 	-->
 	<transformer create="OpenfaceSelector:selector" aureg="true">
 		<input pin="openface" frame="1"/>
@@ -45,7 +46,8 @@
 	
 	<!-- # Lowpass filter
 
-	When observing the bar plots of the action units you have probably noticed that there is quite some jittering. To get a stable signal, we add a [Butterworth filter](https://en.wikipedia.org/wiki/Butterworth_filter). Since we want to remove the high frequencies, we set it to a lowpass filter and choose the cutoff frequency to be 10% of the [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency) (play around with the value to increase or decrease the smoothing factor).	
+	When observing the bar plots of the action units you have probably noticed that there is quite some jittering. To get a stable signal, we add a [Butterworth filter](https://en.wikipedia.org/wiki/Butterworth_filter). Since we want to remove the high frequencies, we set it to a lowpass filter and choose the cutoff frequency to be 10% of the [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency) (play around with the value to increase or decrease the smoothing factor).
+	
 	-->
 	<transformer create="Butfilt" type="0" order="3" low="0.1" zero="true">
 		<input pin="sel_action_unit" frame="0.1s"/>
@@ -56,6 +58,7 @@
 	<!-- # Visualization
 	
 	To get an impression how well the smoothing works, we visualize the raw and the low-passed action unit. Now, when you change from a neutral to a smiling face and back, the red bar should raise and fall accordingly.
+	
 	-->
 	<consumer create="SignalPainter:plot" title="SMILE FEATURE" type="4">
 		<input pin="sel_action_unit" frame="1"/>			

@@ -3,6 +3,7 @@
 <!-- # Introduction
 
 In this tutorial, we will build an audio classifier. It takes sound from a microphone or a file and uses a neural network to detect if a user is speaking. If this is the case, the pipeline will predict the gender of the speaker and if he or she is laughing. For more information, visit [VadNnet](https://github.com/hcmlab/vadnet) project page. Before you start, make sure to install [Tensorflow](https://www.tensorflow.org/) by running the `install_tensorflow.cmd` from the root folder.
+
 --><!---->
 
 <pipeline ssi-v="1">
@@ -25,6 +26,7 @@ In this tutorial, we will build an audio classifier. It takes sound from a micro
 	In live input is selected (i.e. `audio:live=true`), the user can further select if the input comes from a microphone (`audio:live:mic=true`) or the output of the soundcard is captured (`audio:live:mic=false`). In the later case make sure to set the output format of your soundcard to `16 bit` and `48000 Hz`.
 	
 	![](https://raw.githubusercontent.com/hcmlab/vadnet/master/pics/loopback.png)	
+	
 	-->
 	<gate open="$(audio:live)">	
 		<gate open="$(audio:live:mic)">	
@@ -45,6 +47,7 @@ In this tutorial, we will build an audio classifier. It takes sound from a micro
 	<!-- # File input
 	
 	If file input is selected (i.e. `audio:live=false`), two files are used for input: one containing speech and another one containing noise. If you use your own files, makes sure they are `mono` and sampled at `48000 Hz`.
+	
 	-->
 	<gate close="$(audio:live)">
 		<sensor create="WavReader:reader" path="data\speech.wav" loop="true">			
@@ -59,6 +62,7 @@ In this tutorial, we will build an audio classifier. It takes sound from a micro
 	<!-- # Mixer
 	
 	In case of file input, we need to mix the two sources first. Before we do this, we multiply them with weights that can be adjusted at run-time with a slider. This way, the user can continuously control the amount of speech and noise in the audio signal. Then we add a mixer that combines the two signals.
+	
 	-->
 	<gate close="$(audio:live)">
 		<transformer create="Multiply:speech" factor="0.0">
@@ -81,6 +85,7 @@ In this tutorial, we will build an audio classifier. It takes sound from a micro
 	<!-- # Playback and Visualization
 	
 	Finally, we play back the audio signal (in case of file input only) and visualize it.	
+	
 	-->
 	<gate close="$(audio:live)">		
 		<consumer create="AudioPlayer" option="options\aplayer">

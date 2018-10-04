@@ -5,6 +5,7 @@
 The so called R peak is the most prominent part of an ECG and can be used to measure the heart beat. All we have to do is calculate the distance of two successive R peaks. Hence, we have to identify the positions of R peaks in the first place.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/280px-SinusRhythmLabels.svg.png)
+
 --><!---->
 
 <pipeline>
@@ -25,6 +26,7 @@ The so called R peak is the most prominent part of an ECG and can be used to mea
 	\input{path=detrend.py;function=transform;type=python}
 	
 	Then, we hand the script over to `PythonFilter`. [[See also]](https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-transformer)
+	
 	-->
 	<transformer create="PythonFilter" script="detrend">
 		<input pin="ecg" frame="0.5s"/>
@@ -35,6 +37,7 @@ The so called R peak is the most prominent part of an ECG and can be used to mea
 	<!-- # Visualization 	
 	
 	Finally, we plot the original and the processed signal for comparison.
+	
 	-->			
 	<consumer create="SignalPainter:plot" title="ECG" size="10.0">
 		<input pin="ecg" frame="0.5s"/>		

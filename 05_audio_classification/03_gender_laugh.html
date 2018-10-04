@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;merged_avg&quot;</span><span class="kw">/&gt;</span></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
 <h1 id="preparing-results"><span class="header-section-number">3</span> Preparing results</h1>
-<p>Finally, we apply another Python script to prepare the final outcome. The script first checks whether a voiced signal was detected and only if that is the case it adds the probabilies for male/female and laughter.</p>
+<p>Finally, we apply another Python script to prepare the final outcome. The script first checks whether a voiced signal was detected and only if that is the case it adds the probabilities for male/female and laughter.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">def</span> transform(info, sin, sout, sxtra, board, opts, <span class="bu">vars</span>): </a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">       </a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">    voiced <span class="op">=</span> sin[<span class="dv">1</span>] <span class="op">&gt;</span> sin[<span class="dv">0</span>]    </a>

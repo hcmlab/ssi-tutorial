@@ -12,6 +12,7 @@
 	<!-- # Face tracker
 	
 	To track the user's face, we rely on [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace). OpenFace is an open-source toolkit featuring facial landmark detection, head pose estimation, facial action unit recognition, and eye-gaze estimation. We start by connecting the component `Openface` with the video stream of a camera device. In case your face isn't properly tracked, try setting `flip="false"`.
+	
 	-->
 	<sensor create="Camera" option="camera" fps="25.0" flip="true">
 		<output channel="video" pin="video" size="2.0s"/>
@@ -28,6 +29,7 @@
 	<!-- # Visualization 
 	
 	To visualize the tracking, we have to draw the result into the video images. The component `OpenfacePainter` does this job for us. It takes as input the raw video and the output stream of Openface. And it returns a video stream in which the detect facial points are highlighted. We pass this stream to a video painter.
+	
 	-->
 	<transformer create="OpenfacePainter:painter">
 		<input pin="video;openface" frame="1"/>		
@@ -41,6 +43,7 @@
 	<!-- # Action units
 	
 	OpenFace also provides facial action units. `OpenfaceSelector` allow us to select them for further processing. We add a bar plot to visualize them. Note that we use the option `barNames` to add proper labels. The character `|` is used to insert line breaks.
+	
 	-->	
 	<transformer create="OpenfaceSelector:selector" aureg="true">
 		<input pin="openface" frame="1"/>
@@ -64,4 +67,5 @@
 When we start the pipeline for the first time, you will be asked to select a camera device. The information will be stored in option files in the folder of the pipeline. Delete the files if you want to switch to another device at some point (if a device is no longer available, the dialog will automatically pop up again). You will also have to select the media type. Make sure to select a media type that supports the desired resolution (width x height). The dialog will also display the native frames per second. Note that SSI may still read with a different sample rate (the one set in the options of the camera device), but possibly duplicate or drop frames. If the face tracking starts to lack, try a smaller number of frames per seconds and reduce the video resolution.
 
 ![](../pics/camera.png)
+
 --><!---->
