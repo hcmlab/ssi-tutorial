@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<pipeline ssi-v="1">
+	
+	<register>
+		<load name="graphic"/>
+		<load name="audio"/>
+		<load name="ioput"/>		
+		<load name="signal"/>		
+		<load name="python"/>
+		<load name="control"/>
+	</register>
+	
+	<gate open="$(live)">	
+		<gate open="$(live:mic)">	
+			<sensor create="Audio" option="options\microphone" sr="48000" scale="true" blockInSamples="512">
+				<output channel="audio" pin="audio"/>
+			</sensor>
+		</gate>
+		<gate close="$(live:mic)">	
+			<sensor create="AudioLoopBack" option="options\loopback" scale="true">
+				<output channel="audio" pin="audio">			
+					<transformer create="Selector" indices="0"/>
+				</output>
+			</sensor>
+		</gate>
+	</gate>
+	
+	<gate close="$(live)">	
+		<sensor create="WavReader:reader" path="$(path)" loop="true">			
+			<output channel="audio" pin="audio"/>
+		</sensor>				
+	</gate>
+	
+	<transformer create="PythonFeature" script="model" syspath="." optsstr="path=models\vad">
+		<input pin="audio" frame="$(frame)" delta="$(delta)"/>
+		<output pin="vad"/>
+	</transformer>	
+		
+	<!-- # Classification models
+	
+	In addition to the voice activity detector, we load two more models: one that was trained to discriminate male and female speakers and one that detects laughter events. We use the same script (`model.py`) to load the model, but load different weights by changing the `path`. 
+	
+	-->
+	<transformer create="PythonFeature" script="model" syspath="." optsstr="path=models\gender">
+		<input pin="audio" frame="$(frame)" delta="$(delta)"/>
+		<output pin="gender"/>
+	</transformer>
+	
+	<transformer create="PythonFeature" script="model" syspath="." optsstr="path=models\laughter">
+		<input pin="audio" frame="$(frame)" delta="$(delta)"/>
+		<output pin="laugh"/>
+	</transformer>	
+	<!---->
+	
+	<!-- # Merging streams
+	
+	Next, we combine the three sources into a single stream and apply again some smoothing.	
+	-->
+	<transformer create="Merge" dims="5">
+		<input pin="vad;gender;laugh" frame="1"/>
+		<output pin="merged"/>
+	</transformer>	
+	
+	<transformer create="MvgAvgVar" format="1" method="2" win="3.0">
+		<input pin="merged" frame="1"/>
+		<output pin="merged_avg"/>
+	</transformer>
+	<!---->	
+	
+	<!-- # Preparing results
+	
+	Finally, we apply another Python script to prepare the final outcome. The script first checks whether a voiced signal was detected and only if that is the case it adds the probabilities for male/female and laughter.
+	
+	\input{path=vadex.py;function=transform;type=python}	
+	
+	We add a `PythonFilter` to apply the script to the raw audio input.
+	-->
+	<transformer create="PythonFilter" script="vadex" syspath=".">
+		<input pin="merged_avg" frame="1"/>
+		<output pin="final"/>
+	</transformer>	
+	<!---->	
+		
+	<consumer create="SignalPainter:plot" title="AUDIO" size="10" type="2">
+		<input pin="audio" frame="0.1s" delta="0"/>
+	</consumer>
+	<consumer create="SignalPainter:plot" title="VADEX" type="5" autoscale="false" fix="1,1" barNames="NOISE,VOICE,MALE,FEMALE,LAUGH">
+		<input pin="final" frame="1" />
+	</consumer>
+	
+	<gate open="$(send:do)">
+		<consumer create="XMLEventSender:monitor" address="final@xml" path="vadex.xml" monitor="true" mname="XML" console="false" update="100" coldelim=" ">
+			<input pin="final" frame="1"/>
+		</consumer>	
+		<object create="SocketEventWriter" url="$(send:url)" xml="false">
+			<listen address="final@xml"/>
+		</object>	
+	</gate>	
+	
+	<gate close="$(live)">	
+		<consumer create="AudioPlayer" option="options\aplayer">
+			<input pin="audio" frame="0.1s"/>
+		</consumer>
+	</gate>
+	
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>		
+		<area pos="800,0,400,600" nh="1">slider*</area>	
+		<area pos="800,300,400,300">monitor</area>		
+	</object>
+
+</pipeline>

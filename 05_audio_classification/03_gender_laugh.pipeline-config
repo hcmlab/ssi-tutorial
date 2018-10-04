@@ -1,0 +1,13 @@
+live = false
+live:mic = true
+
+path = data\group.wav
+
+frame = 8000
+delta = 40000
+
+send:do = false					
+send:url = upd://localhost:1234	
+
+record:do = false
+record:path = capture

@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+
+<pipeline ssi-v="1">
+	
+	<register>
+		<load name="graphic"/>
+		<load name="audio" depend="ssidialog.dll"/>
+		<load name="ioput"/>		
+		<load name="signal"/>		
+		<load name="python"/>
+		<load name="control"/>
+	</register>
+
+	<gate open="$(audio:live)">	
+		<gate open="$(audio:live:mic)">	
+			<sensor create="Audio" option="options\microphone" sr="48000" scale="true" blockInSamples="512">
+				<output channel="audio" pin="audio"/>
+			</sensor>
+		</gate>
+		<gate close="$(audio:live:mic)">	
+			<sensor create="AudioLoopBack" option="options\loopback" scale="true">
+				<output channel="audio" pin="audio">			
+					<transformer create="Selector" indices="0"/>
+				</output>
+			</sensor>
+		</gate>
+	</gate>
+
+	<gate close="$(audio:live)">
+		<sensor create="WavReader:reader" path="data\speech.wav" loop="true">			
+			<output channel="audio" pin="speech_raw" size="2.0s"/>
+		</sensor>		
+		<sensor create="WavReader:reader" path="data\noise.wav" loop="true">			
+			<output channel="audio" pin="noise_raw" size="2.0s"/>
+		</sensor>		
+		<transformer create="Multiply:speech" factor="0.0">
+			<input pin="speech_raw" frame="4800"/>
+			<output pin="speech"/>
+		</transformer>	
+		<transformer create="Multiply:noise" factor="0.0">
+			<input pin="noise_raw" frame="4800"/>
+			<output pin="noise"/>
+		</transformer>	
+		<runnable create="ControlSlider:slider" title="SPEECH" id="speech" name="factor" defval="0.0" minval="0.0" maxval="1.0"/>
+		<runnable create="ControlSlider:slider" title="NOISE" id="noise" name="factor" defval="0.0" minval="0.0" maxval="0.25"/>		
+		<transformer create="STKAudioMixer:mixer">
+			<input pin="speech;noise" frame="4800"/>
+			<output pin="audio"/>
+		</transformer>				
+	</gate>
+
+	<!-- # Voice activity detection
+	
+	The voice activity model we are using has been trained with [Tensorflow](https://www.tensorflow.org/). It takes as input the raw audio input and feeds it into a 3-layer [Convolutional Network](https://en.wikipedia.org/wiki/Convolutional_neural_network). The result of this filter operation is then processed by a 2-layer [Recurrent Network](https://en.wikipedia.org/wiki/Recurrent_neural_network) containing 64 RLU cells. The final bit is a fully-connected layer, which applies a softmax and maps the input to a tuple `<noise, voice>` in the range `[0..1]`.
+	
+	![](https://raw.githubusercontent.com/hcmlab/vadnet/master/pics/network.png)
+	
+	We use Python to interface with the model. The script is `model.py` contains various functions that are called by SSI. Most importantly, the function `load_model` is called to read the model weights and initialize the network graph.
+	
+	\input{path=model.py;function=load_model;type=python}
+	
+	At run-time the function `transform` takes an audio chunk and feeds it into the network model.
+	
+	\input{path=model.py;function=transform;type=python}	
+	
+	We add a `PythonFeature` to apply the script to the raw audio input.
+	-->
+	<transformer create="PythonFeature" script="model" syspath="." optsstr="path=$(model:path)">
+		<input pin="audio" frame="8000" delta="40000"/>
+		<output pin="vad_raw"/>
+	</transformer>
+	<!---->	
+	
+	
+	<!-- # Smoothing
+	
+	To smooth the output of the network, we also add a moving average.	
+	-->
+	<transformer create="MvgAvgVar" format="1" method="2" win="3.0">
+		<input pin="vad_raw" frame="1"/>
+		<output pin="vad"/>
+	</transformer>
+	<!---->
+	
+	<!-- # Output 
+	
+	If we want to share the result with an external application, we create an XML string that holds the current detection result and publish it on a socket connection.	
+	-->
+	<gate open="$(send:do)">
+		<consumer create="XMLEventSender:monitor" address="vad@xml" path="vad.xml" monitor="true" mname="XML" console="false" update="100" coldelim=" ">
+			<input pin="vad" frame="1"/>
+		</consumer>	
+		<object create="SocketEventWriter" url="$(send:url)" xml="false">
+			<listen address="vad@xml"/>
+		</object>	
+	</gate>
+	<!---->	
+	
+	<gate close="$(audio:live)">		
+		<consumer create="AudioPlayer" option="options\aplayer">
+			<input pin="audio" frame="0.1s"/>
+		</consumer>	
+	</gate>
+	
+	<!-- # Visualization
+	
+	Finally, we add a bar plot to visualize the predictions.
+	-->	
+	<consumer create="SignalPainter:plot" title="AUDIO" size="10" type="2">
+		<input pin="audio" frame="0.2s" delta="0"/>
+	</consumer>			
+	<consumer create="SignalPainter:plot" title="VAD" type="5" autoscale="false" fix="1,1" barNames="NOISE,VOICE">
+		<input pin="vad" frame="1" />
+	</consumer>	
+	<!---->				
+		
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>		
+		<area pos="800,0,400,200" nh="1">slider*</area>	
+		<area pos="800,300,400,300">monitor</area>	
+	</object>		
+
+</pipeline>

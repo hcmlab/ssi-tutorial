@@ -18,12 +18,6 @@ set DST=bin\
 %DST%python %DST%get-pip.py
 %DST%Scripts\pip.exe install numpy
 %DST%Scripts\pip.exe install scipy
-rem %DST%python %DST%has_gpu.py > %DST%has_gpu.txt
-rem set /p GPU=<%DST%has_gpu.txt
-rem %DST%Scripts\pip.exe install tensorflow%GPU%==1.8.0
-rem %DST%Scripts\easy_install.exe termcolor
-rem %DST%Scripts\pip.exe install tensorflow%GPU%==1.8.0
-rem %DST%Scripts\pip.exe install librosa
 %DST%wget.exe %SRC%xmlpipe.exe -O %DST%xmlpipe.exe 
 %DST%wget.exe %SRC%xmlchain.exe -O %DST%xmlchain.exe 
 %DST%wget.exe %SRC%xmltrain.exe -O %DST%xmltrain.exe 
@@ -31,3 +25,5 @@ rem %DST%Scripts\pip.exe install librosa
 %DST%python pipe2html.py 01_hello_world
 %DST%python pipe2html.py 02_audiovisual_recording
 %DST%python pipe2html.py 03_smile_detection
+%DST%python pipe2html.py 04_python
+%DST%python pipe2html.py 05_audio_classification
