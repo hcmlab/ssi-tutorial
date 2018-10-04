@@ -18,7 +18,7 @@
 	<sensor create="Audio" option="audio" sr="44100" blockInSamples="512">
 		<output channel="audio" pin="audio"/>
 	</sensor>
-	<sensor create="Camera" option="camera" fps="25.0">
+	<sensor create="Camera" option="camera" fps="25.0" flip="true">
 		<output channel="video" pin="video" size="2.0s"/>
 	</sensor>	
 	<!---->
@@ -44,7 +44,7 @@
 	<consumer create="SignalPainter:paint" title="AUDIO" size="10" type="2">
 		<input pin="audio" frame="512"/>
 	</consumer>
-	<consumer create="VideoPainter:paint" title="VIDEO">
+	<consumer create="VideoPainter:paint" title="VIDEO" flip="false">
 		<input pin="video" frame="1"/>
 	</consumer>		
 	<object create="Decorator" icon="true" title="Pipeline">	
