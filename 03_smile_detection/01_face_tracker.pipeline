@@ -5,7 +5,7 @@
 	<register>
 		<load name="camera" depend="ssidialog.dll"/>		
 		<load name="graphic"/>	
-		<load name="openface"/>		
+		<load name="openface" depend="opencv_world310.dll"/>		
 		<load name="ioput"/>
 	</register>	
 		

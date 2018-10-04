@@ -14,7 +14,7 @@ Now, we want to use the annotation we created in the last step to train a classi
 	<register>
 		<load name="camera" depend="ssidialog.dll"/>	
 		<load name="graphic"/>	
-		<load name="openface"/>		
+		<load name="openface" depend="opencv_world310.dll"/>	
 		<load name="ioput"/>
 		<load name="signal"/>
 		<load name="model"/>
