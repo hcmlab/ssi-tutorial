@@ -1,0 +1,153 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+
+  <link rel="stylesheet" type="text/css" href="template.css" />
+
+   <link href="templates/menu/css/video-js.css" rel="stylesheet" />
+
+
+
+<script src="templates/menu/js/jquery.min.js"></script>
+<script type='text/javascript' src='templates/menu/js/jquery.cookie.js'></script>
+<script type='text/javascript' src='templates/menu/js/jquery.hoverIntent.minified.js'></script>
+<script type='text/javascript' src='templates/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+<link href="templates/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+<link href="templates/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+<link href="templates/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+<script src="templates/menu/js/MathJax.js"></script>
+        
+  
+  <script src="templates/script.js"></script>
+  
+    <script src="templates/jquery.sticky-kit.js "></script>
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Example 2: advanced" />
+  <title>Tutorial 2: audiovisual recording</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../templates/template.css" />
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">Tutorial 2: audiovisual recording</span>
+        <ul class="nav pull-right doc-info">
+                    <li><p class="navbar-text">Example 2: advanced</p></li>
+                              <li><p class="navbar-text"><a href="http://openssi.net"><img src="../pics/ssi.png" /></a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#stop-button"><span class="toc-section-number">1</span> Stop button</a></li>
+        <li><a href="#record-button"><span class="toc-section-number">2</span> Record button</a></li>
+        <li><a href="#target-path"><span class="toc-section-number">3</span> Target path</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="stop-button"><span class="header-section-number">1</span> Stop button</h1>
+<p>By default, a pipeline stops when a user presses enter in the console. We can overwrite this behavior by adding a stop button. Therefore, we let the pipeline wait for a stop signal of an object with the id <code>close</code>. Then we add a <code>WaitButton</code>, to which we assign this id.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">&lt;framework</span><span class="ot"> waitid=</span><span class="st">&quot;close&quot;</span><span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;WaitButton:close&quot;</span><span class="ot"> title=</span><span class="st">&quot;button&quot;</span><span class="ot"> label=</span><span class="st">&quot;CLOSE&quot;</span><span class="kw">/&gt;</span></a></code></pre></div>
+<h1 id="record-button"><span class="header-section-number">2</span> Record button</h1>
+<p>We add another button, which allows us to start/stop a recording on the fly. Again, we assign ids of the objects that should be controlled by the button. Here, we select all ids starting with <code>write</code> and <code>paint</code>. Now, when the button is unchecked, the recording and visualization will stop.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;ControlCheckBox:record&quot;</span><span class="ot"> id=</span><span class="st">&quot;paint*,write*&quot;</span><span class="ot"> label=</span><span class="st">&quot;RECORD&quot;</span><span class="ot"> default=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span></a></code></pre></div>
+<h1 id="target-path"><span class="header-section-number">3</span> Target path</h1>
+<p>If we run recordings over a longer period, we want to keep track when a recording took place. The variable <code>$(date)</code> will be replaced with the a current time stamp, which allows us to create a unique folder for each recording session. We also make use of the variable <code>$(num,d)</code> to number successive recordings with <code>d</code> trailing zeros.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;FFMPEGWriter:write&quot;</span><span class="ot"> path=</span><span class="st">&quot;$(date)\audio_$(num,2).m4a&quot;</span><span class="ot"> overwrite=</span><span class="st">&quot;false&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;512&quot;</span><span class="kw">/&gt;</span>        </a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;/consumer&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;FFMPEGWriter:write&quot;</span><span class="ot"> path=</span><span class="st">&quot;$(date)\video_$(num,2).mp4&quot;</span><span class="ot"> overwrite=</span><span class="st">&quot;false&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;video;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span>        </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/consumer&gt;</span></a></code></pre></div>
+            </div>
+    </div>
+  </div>
+  <script src="templates/menu/js/video.js"></script>
+
+</body>
+</html>

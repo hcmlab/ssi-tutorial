@@ -21,9 +21,3 @@ set DST=bin\
 %DST%wget.exe %SRC%xmlpipe.exe -O %DST%xmlpipe.exe 
 %DST%wget.exe %SRC%xmlchain.exe -O %DST%xmlchain.exe 
 %DST%wget.exe %SRC%xmltrain.exe -O %DST%xmltrain.exe 
-
-%DST%python pipe2html.py 01_hello_world
-%DST%python pipe2html.py 02_audiovisual_recording
-%DST%python pipe2html.py 03_smile_detection
-%DST%python pipe2html.py 04_python
-%DST%python pipe2html.py 05_audio_classification
