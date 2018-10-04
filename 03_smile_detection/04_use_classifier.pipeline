@@ -11,7 +11,7 @@ Now, we want to use the annotation we created in the last step to train a classi
 <pipeline>
 
 	<register>
-		<load name="camera"/>		
+		<load name="camera" depend="ssidialog.dll"/>	
 		<load name="graphic"/>	
 		<load name="openface"/>		
 		<load name="ioput"/>

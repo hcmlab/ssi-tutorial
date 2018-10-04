@@ -3,7 +3,7 @@
 <pipeline>
 	
 	<register>		
-		<load name="audio"/>
+		<load name="audio" depend="ssidialog.dll"/>
 		<load name="camera"/>
 		<load name="control"/>
 		<load name="graphic"/>		

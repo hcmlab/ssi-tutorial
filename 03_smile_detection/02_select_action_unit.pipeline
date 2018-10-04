@@ -3,7 +3,7 @@
 <pipeline>
 
 	<register>
-		<load name="camera"/>		
+		<load name="camera" depend="ssidialog.dll"/>	
 		<load name="graphic"/>	
 		<load name="openface"/>		
 		<load name="ioput"/>
