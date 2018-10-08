@@ -31,75 +31,47 @@
   
     <script src="templates/jquery.sticky-kit.js "></script>
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Example 2: vad" />
+  <meta name="author" content="Example 2: vad | Previous | Next" />
   <title>Tutorial 5: audio classification</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="../templates/template.css" />
+  <link rel="stylesheet" href="../templates/template.css" type="text/css" />
 </head>
 <body>
 
@@ -109,7 +81,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="container">
         <span class="doc-title">Tutorial 5: audio classification</span>
         <ul class="nav pull-right doc-info">
-                    <li><p class="navbar-text">Example 2: vad</p></li>
+                    <li><p class="navbar-text">Example 2: vad | <a href="01_input.html">Previous</a> | <a href="03_gender_laugh.html">Next</a></p></li>
                               <li><p class="navbar-text"><a href="http://openssi.net"><img src="../pics/ssi.png" /></a></p></li>
                   </ul>
       </div>
@@ -132,112 +104,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <div class="span9">
             <h1 id="voice-activity-detection"><span class="header-section-number">1</span> Voice activity detection</h1>
 <p>The voice activity model we are using has been trained with <a href="https://www.tensorflow.org/">Tensorflow</a>. It takes as input the raw audio input and feeds it into a 3-layer <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">Convolutional Network</a>. The result of this filter operation is then processed by a 2-layer <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent Network</a> containing 64 RLU cells. The final bit is a fully-connected layer, which applies a softmax and maps the input to a tuple <code>&lt;noise, voice&gt;</code> in the range <code>[0..1]</code>.</p>
-<p><img src="https://raw.githubusercontent.com/hcmlab/vadnet/master/pics/network.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/hcmlab/vadnet/master/pics/network.png" />
+
+</div>
 <p>We use Python to interface with the model. The script is <code>model.py</code> contains various functions that are called by SSI. Most importantly, the function <code>load_model</code> is called to read the model weights and initialize the network graph.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">def</span> load_model(opts, <span class="bu">vars</span>):</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="bu">print</span>(<span class="st">&#39;load model &#39;</span>, opts[<span class="st">&#39;path&#39;</span>])</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="cf">if</span> os.path.isdir(opts[<span class="st">&#39;path&#39;</span>]):</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">        files <span class="op">=</span> glob.glob(os.path.join(opts[<span class="st">&#39;path&#39;</span>], <span class="st">&#39;model.ckpt-*.meta&#39;</span>))</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">        <span class="cf">if</span> files:</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">            files.sort()                </a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">            checkpoint_path, _ <span class="op">=</span> os.path.splitext(files[<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="cf">else</span>:</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">        checkpoint_path <span class="op">=</span> opts[<span class="st">&#39;path&#39;</span>]        </a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">all</span>([os.path.exists(checkpoint_path <span class="op">+</span> x) <span class="cf">for</span> x <span class="kw">in</span> [<span class="st">&#39;.data-00000-of-00001&#39;</span>, <span class="st">&#39;.index&#39;</span>, <span class="st">&#39;.meta&#39;</span>]]):</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">        <span class="bu">print</span>(<span class="st">&#39;ERROR: could not load model&#39;</span>)</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">    vocabulary_path <span class="op">=</span> checkpoint_path <span class="op">+</span> <span class="st">&#39;.json&#39;</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(vocabulary_path):</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">        vocabulary_path <span class="op">=</span> os.path.join(os.path.dirname(checkpoint_path), <span class="st">&#39;vocab.json&#39;</span>)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(vocabulary_path):</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">        <span class="bu">print</span>(<span class="st">&#39;ERROR: could not load vocabulary&#39;</span>)</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">    graph <span class="op">=</span> tf.Graph()</a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">    <span class="cf">with</span> graph.as_default():</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">        <span class="bu">print</span>(<span class="st">&#39;loading model </span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(checkpoint_path)) </a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">        saver <span class="op">=</span> tf.train.import_meta_graph(checkpoint_path <span class="op">+</span> <span class="st">&#39;.meta&#39;</span>)</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">        <span class="cf">with</span> <span class="bu">open</span>(vocabulary_path, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> fp:</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">            vocab <span class="op">=</span> json.load(fp)</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb1-33" data-line-number="33">        x <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;x&#39;</span>])</a>
-<a class="sourceLine" id="cb1-34" data-line-number="34">        y <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;y&#39;</span>])            </a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">        init <span class="op">=</span> graph.get_operation_by_name(vocab[<span class="st">&#39;init&#39;</span>])</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36">        logits <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;logits&#39;</span>])            </a>
-<a class="sourceLine" id="cb1-37" data-line-number="37">        ph_n_shuffle <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_shuffle&#39;</span>])</a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">        ph_n_repeat <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_repeat&#39;</span>])</a>
-<a class="sourceLine" id="cb1-39" data-line-number="39">        ph_n_batch <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_batch&#39;</span>])</a>
-<a class="sourceLine" id="cb1-40" data-line-number="40">        <span class="bu">vars</span>[<span class="st">&#39;n_classes&#39;</span>] <span class="op">=</span> <span class="bu">len</span>(vocab[<span class="st">&#39;targets&#39;</span>])</a>
-<a class="sourceLine" id="cb1-41" data-line-number="41"></a>
-<a class="sourceLine" id="cb1-42" data-line-number="42">        sess <span class="op">=</span> tf.Session()    </a>
-<a class="sourceLine" id="cb1-43" data-line-number="43">        saver.restore(sess, checkpoint_path)</a>
-<a class="sourceLine" id="cb1-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb1-45" data-line-number="45">        <span class="bu">vars</span>[<span class="st">&#39;sess&#39;</span>] <span class="op">=</span> sess</a>
-<a class="sourceLine" id="cb1-46" data-line-number="46">        <span class="bu">vars</span>[<span class="st">&#39;x&#39;</span>] <span class="op">=</span> x</a>
-<a class="sourceLine" id="cb1-47" data-line-number="47">        <span class="bu">vars</span>[<span class="st">&#39;y&#39;</span>] <span class="op">=</span> y    </a>
-<a class="sourceLine" id="cb1-48" data-line-number="48">        <span class="bu">vars</span>[<span class="st">&#39;ph_n_shuffle&#39;</span>] <span class="op">=</span> ph_n_shuffle</a>
-<a class="sourceLine" id="cb1-49" data-line-number="49">        <span class="bu">vars</span>[<span class="st">&#39;ph_n_repeat&#39;</span>] <span class="op">=</span> ph_n_repeat</a>
-<a class="sourceLine" id="cb1-50" data-line-number="50">        <span class="bu">vars</span>[<span class="st">&#39;ph_n_batch&#39;</span>] <span class="op">=</span> ph_n_batch</a>
-<a class="sourceLine" id="cb1-51" data-line-number="51">        <span class="bu">vars</span>[<span class="st">&#39;init&#39;</span>] <span class="op">=</span> init</a>
-<a class="sourceLine" id="cb1-52" data-line-number="52">        <span class="bu">vars</span>[<span class="st">&#39;logits&#39;</span>] <span class="op">=</span> logits</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> load_model(opts, <span class="bu">vars</span>):
+
+    <span class="bu">print</span>(<span class="st">&#39;load model &#39;</span>, opts[<span class="st">&#39;path&#39;</span>])
+
+    <span class="cf">if</span> os.path.isdir(opts[<span class="st">&#39;path&#39;</span>]):
+        files <span class="op">=</span> glob.glob(os.path.join(opts[<span class="st">&#39;path&#39;</span>], <span class="st">&#39;model.ckpt-*.meta&#39;</span>))
+        <span class="cf">if</span> files:
+            files.sort()                
+            checkpoint_path, _ <span class="op">=</span> os.path.splitext(files[<span class="op">-</span><span class="dv">1</span>])
+    <span class="cf">else</span>:
+        checkpoint_path <span class="op">=</span> opts[<span class="st">&#39;path&#39;</span>]        
+
+    <span class="cf">if</span> <span class="op">not</span> <span class="bu">all</span>([os.path.exists(checkpoint_path <span class="op">+</span> x) <span class="cf">for</span> x <span class="op">in</span> [<span class="st">&#39;.data-00000-of-00001&#39;</span>, <span class="st">&#39;.index&#39;</span>, <span class="st">&#39;.meta&#39;</span>]]):
+        <span class="bu">print</span>(<span class="st">&#39;ERROR: could not load model&#39;</span>)
+        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>
+
+    vocabulary_path <span class="op">=</span> checkpoint_path <span class="op">+</span> <span class="st">&#39;.json&#39;</span>
+    <span class="cf">if</span> <span class="op">not</span> os.path.exists(vocabulary_path):
+        vocabulary_path <span class="op">=</span> os.path.join(os.path.dirname(checkpoint_path), <span class="st">&#39;vocab.json&#39;</span>)
+    <span class="cf">if</span> <span class="op">not</span> os.path.exists(vocabulary_path):
+        <span class="bu">print</span>(<span class="st">&#39;ERROR: could not load vocabulary&#39;</span>)
+        <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>
+
+    graph <span class="op">=</span> tf.Graph()
+
+    <span class="cf">with</span> graph.as_default():
+
+        <span class="bu">print</span>(<span class="st">&#39;loading model {}&#39;</span>.<span class="bu">format</span>(checkpoint_path)) 
+        saver <span class="op">=</span> tf.train.import_meta_graph(checkpoint_path <span class="op">+</span> <span class="st">&#39;.meta&#39;</span>)
+        <span class="cf">with</span> <span class="bu">open</span>(vocabulary_path, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> fp:
+            vocab <span class="op">=</span> json.load(fp)
+
+        x <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;x&#39;</span>])
+        y <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;y&#39;</span>])            
+        init <span class="op">=</span> graph.get_operation_by_name(vocab[<span class="st">&#39;init&#39;</span>])
+        logits <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;logits&#39;</span>])            
+        ph_n_shuffle <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_shuffle&#39;</span>])
+        ph_n_repeat <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_repeat&#39;</span>])
+        ph_n_batch <span class="op">=</span> graph.get_tensor_by_name(vocab[<span class="st">&#39;n_batch&#39;</span>])
+        <span class="bu">vars</span>[<span class="st">&#39;n_classes&#39;</span>] <span class="op">=</span> <span class="bu">len</span>(vocab[<span class="st">&#39;targets&#39;</span>])
+
+        sess <span class="op">=</span> tf.Session()    
+        saver.restore(sess, checkpoint_path)
+
+        <span class="bu">vars</span>[<span class="st">&#39;sess&#39;</span>] <span class="op">=</span> sess
+        <span class="bu">vars</span>[<span class="st">&#39;x&#39;</span>] <span class="op">=</span> x
+        <span class="bu">vars</span>[<span class="st">&#39;y&#39;</span>] <span class="op">=</span> y    
+        <span class="bu">vars</span>[<span class="st">&#39;ph_n_shuffle&#39;</span>] <span class="op">=</span> ph_n_shuffle
+        <span class="bu">vars</span>[<span class="st">&#39;ph_n_repeat&#39;</span>] <span class="op">=</span> ph_n_repeat
+        <span class="bu">vars</span>[<span class="st">&#39;ph_n_batch&#39;</span>] <span class="op">=</span> ph_n_batch
+        <span class="bu">vars</span>[<span class="st">&#39;init&#39;</span>] <span class="op">=</span> init
+        <span class="bu">vars</span>[<span class="st">&#39;logits&#39;</span>] <span class="op">=</span> logits</code></pre></div>
 <p>At run-time the function <code>transform</code> takes an audio chunk and feeds it into the network model.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">def</span> transform(info, sin, sout, sxtra, board, opts, <span class="bu">vars</span>): </a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">     </a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="cf">if</span> <span class="bu">vars</span>[<span class="st">&#39;loaded&#39;</span>]:    </a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">        sess <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;sess&#39;</span>]</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">        x <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;x&#39;</span>]</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">        y <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;y&#39;</span>]</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">        ph_n_shuffle <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_shuffle&#39;</span>]</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">        ph_n_repeat <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_repeat&#39;</span>]</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">        ph_n_batch <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_batch&#39;</span>]</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">        init <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;init&#39;</span>]</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">        logits <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;logits&#39;</span>]</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">        <span class="bu">input</span> <span class="op">=</span> np.asmatrix(sin).reshape(<span class="op">-</span><span class="dv">1</span>, x.shape[<span class="dv">1</span>]) </a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">        dummy <span class="op">=</span> np.zeros((<span class="bu">input</span>.shape[<span class="dv">0</span>],), dtype<span class="op">=</span>np.int32)</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">        sess.run(init, feed_dict <span class="op">=</span> { x : <span class="bu">input</span>, y : dummy, ph_n_shuffle : <span class="dv">1</span>, ph_n_repeat : <span class="dv">1</span>, ph_n_batch : <span class="bu">input</span>.shape[<span class="dv">0</span>] })    </a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">        output <span class="op">=</span> sess.run(logits)    </a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">        output <span class="op">=</span> np.mean(output, axis<span class="op">=</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sout.dim):</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">            sout[i] <span class="op">=</span> output[i]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> transform(info, sin, sout, sxtra, board, opts, <span class="bu">vars</span>): 
+     
+    <span class="cf">if</span> <span class="bu">vars</span>[<span class="st">&#39;loaded&#39;</span>]:    
+
+        sess <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;sess&#39;</span>]
+        x <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;x&#39;</span>]
+        y <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;y&#39;</span>]
+        ph_n_shuffle <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_shuffle&#39;</span>]
+        ph_n_repeat <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_repeat&#39;</span>]
+        ph_n_batch <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;ph_n_batch&#39;</span>]
+        init <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;init&#39;</span>]
+        logits <span class="op">=</span> <span class="bu">vars</span>[<span class="st">&#39;logits&#39;</span>]
+
+        <span class="bu">input</span> <span class="op">=</span> np.asmatrix(sin).reshape(<span class="op">-</span><span class="dv">1</span>, x.shape[<span class="dv">1</span>]) 
+
+        dummy <span class="op">=</span> np.zeros((<span class="bu">input</span>.shape[<span class="dv">0</span>],), dtype<span class="op">=</span>np.int32)
+        sess.run(init, feed_dict <span class="op">=</span> { x : <span class="bu">input</span>, y : dummy, ph_n_shuffle : <span class="dv">1</span>, ph_n_repeat : <span class="dv">1</span>, ph_n_batch : <span class="bu">input</span>.shape[<span class="dv">0</span>] })    
+        output <span class="op">=</span> sess.run(logits)    
+        output <span class="op">=</span> np.mean(output, axis<span class="op">=</span><span class="dv">0</span>)
+
+        <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(sout.dim):
+            sout[i] <span class="op">=</span> output[i]</code></pre></div>
 <p>We add a <code>PythonFeature</code> to apply the script to the raw audio input.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;PythonFeature&quot;</span><span class="ot"> script=</span><span class="st">&quot;model&quot;</span><span class="ot"> syspath=</span><span class="st">&quot;.&quot;</span><span class="ot"> optsstr=</span><span class="st">&quot;path=$(model:path)&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;8000&quot;</span><span class="ot"> delta=</span><span class="st">&quot;40000&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;vad_raw&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;PythonFeature&quot;</span><span class="ot"> script=</span><span class="st">&quot;model&quot;</span><span class="ot"> syspath=</span><span class="st">&quot;.&quot;</span><span class="ot"> optsstr=</span><span class="st">&quot;path=$(model:path)&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;8000&quot;</span><span class="ot"> delta=</span><span class="st">&quot;40000&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;vad_raw&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span></code></pre></div>
 <h1 id="smoothing"><span class="header-section-number">2</span> Smoothing</h1>
 <p>To smooth the output of the network, we also add a moving average.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;MvgAvgVar&quot;</span><span class="ot"> format=</span><span class="st">&quot;1&quot;</span><span class="ot"> method=</span><span class="st">&quot;2&quot;</span><span class="ot"> win=</span><span class="st">&quot;3.0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad_raw&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;MvgAvgVar&quot;</span><span class="ot"> format=</span><span class="st">&quot;1&quot;</span><span class="ot"> method=</span><span class="st">&quot;2&quot;</span><span class="ot"> win=</span><span class="st">&quot;3.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad_raw&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span></code></pre></div>
 <h1 id="output"><span class="header-section-number">3</span> Output</h1>
 <p>If we want to share the result with an external application, we create an XML string that holds the current detection result and publish it on a socket connection.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">&lt;gate</span><span class="ot"> open=</span><span class="st">&quot;$(send:do)&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">    <span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;XMLEventSender:monitor&quot;</span><span class="ot"> address=</span><span class="st">&quot;vad@xml&quot;</span><span class="ot"> path=</span><span class="st">&quot;vad.xml&quot;</span><span class="ot"> monitor=</span><span class="st">&quot;true&quot;</span><span class="ot"> mname=</span><span class="st">&quot;XML&quot;</span><span class="ot"> console=</span><span class="st">&quot;false&quot;</span><span class="ot"> update=</span><span class="st">&quot;100&quot;</span><span class="ot"> coldelim=</span><span class="st">&quot; &quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">        <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="kw">&lt;/consumer&gt;</span>    </a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;SocketEventWriter&quot;</span><span class="ot"> url=</span><span class="st">&quot;$(send:url)&quot;</span><span class="ot"> xml=</span><span class="st">&quot;false&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">        <span class="kw">&lt;listen</span><span class="ot"> address=</span><span class="st">&quot;vad@xml&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="kw">&lt;/object&gt;</span>    </a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">&lt;/gate&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;gate</span><span class="ot"> open=</span><span class="st">&quot;$(send:do)&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;XMLEventSender:monitor&quot;</span><span class="ot"> address=</span><span class="st">&quot;vad@xml&quot;</span><span class="ot"> path=</span><span class="st">&quot;vad.xml&quot;</span><span class="ot"> monitor=</span><span class="st">&quot;true&quot;</span><span class="ot"> mname=</span><span class="st">&quot;XML&quot;</span><span class="ot"> console=</span><span class="st">&quot;false&quot;</span><span class="ot"> update=</span><span class="st">&quot;100&quot;</span><span class="ot"> coldelim=</span><span class="st">&quot; &quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/consumer&gt;</span>    
+    <span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;SocketEventWriter&quot;</span><span class="ot"> url=</span><span class="st">&quot;$(send:url)&quot;</span><span class="ot"> xml=</span><span class="st">&quot;false&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;listen</span><span class="ot"> address=</span><span class="st">&quot;vad@xml&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/object&gt;</span>    
+<span class="kw">&lt;/gate&gt;</span></code></pre></div>
 <h1 id="visualization"><span class="header-section-number">4</span> Visualization</h1>
 <p>Finally, we add a bar plot to visualize the predictions.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;AUDIO&quot;</span><span class="ot"> size=</span><span class="st">&quot;10&quot;</span><span class="ot"> type=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="ot"> delta=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">&lt;/consumer&gt;</span>            </a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;VAD&quot;</span><span class="ot"> type=</span><span class="st">&quot;5&quot;</span><span class="ot"> autoscale=</span><span class="st">&quot;false&quot;</span><span class="ot"> fix=</span><span class="st">&quot;1,1&quot;</span><span class="ot"> barNames=</span><span class="st">&quot;NOISE,VOICE&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">&lt;/consumer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;AUDIO&quot;</span><span class="ot"> size=</span><span class="st">&quot;10&quot;</span><span class="ot"> type=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;audio&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="ot"> delta=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/consumer&gt;</span>            
+<span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;VAD&quot;</span><span class="ot"> type=</span><span class="st">&quot;5&quot;</span><span class="ot"> autoscale=</span><span class="st">&quot;false&quot;</span><span class="ot"> fix=</span><span class="st">&quot;1,1&quot;</span><span class="ot"> barNames=</span><span class="st">&quot;NOISE,VOICE&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;vad&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;/consumer&gt;</span></code></pre></div>
             </div>
     </div>
   </div>

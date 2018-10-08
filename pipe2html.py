@@ -108,55 +108,72 @@ def replace_input(text, dir, name):
         return text
 
 
-def convert(args, path):
+class Path:
 
-    name, _ = os.path.splitext(os.path.basename(path))    
-    dir = os.path.dirname(path)
-    name_pipe = name + '.pipeline'
-    path_pipe = os.path.join(dir, name_pipe)
-    name_html = name + '.html'
-    path_html = os.path.join(dir, name_html)
-    name_md = name + '.md'
-    path_md = os.path.join(dir, name_md)
-    name_cmd = name + '.cmd'
-    path_cmd = os.path.join(dir, name_cmd)
-    
-    match = re.match(r'(\d+).(.*)', os.path.basename(dir))
+    def __init__(self, path):
+        self.name, _ = os.path.splitext(os.path.basename(path))    
+        self.dir = os.path.dirname(path)
+
+    def path(self, ext, full):
+        tmp = self.name + ext
+        return os.path.join(self.dir, tmp) if full else tmp
+
+    def pipe(self, full):
+        return self.path('.pipeline', full)
+        
+    def html(self, full):
+        return self.path('.html', full)
+
+    def md(self, full):
+        return self.path('.md', full)
+
+    def cmd(self, full):
+        return self.path('.cmd', full)
+
+
+
+def convert(args, path, path_prev=None, path_next=None):
+
+    path = Path(path)
+    path_prev = Path(path_prev)
+    path_next = Path(path_next)
+
+    match = re.match(r'(\d+).(.*)', os.path.basename(path.dir))
     tutorial_num = int(match[1]) if match else ''
-    tutorial_name = (match[2] if match else os.path.basename(dir)).replace('_', ' ')
-    match = re.match(r'(\d+).(.*)', name)
+    tutorial_name = (match[2] if match else os.path.basename(path.dir)).replace('_', ' ')
+    match = re.match(r'(\d+).(.*)', path.name)
     example_num = int(match[1]) if match else ''
-    example_name = (match[2] if match else name).replace('_', ' ')        
+    example_name = (match[2] if match else path.name()).replace('_', ' ')        
 
-    print('{}: {}'.format(dir, name_pipe), end='')
+    print('{}: {}'.format(path.dir, path.pipe(False)), end='')
 
-    with open(path_pipe, 'r')  as fp_pipe, open(path_md, 'w') as fp_md:
+    with open(path.pipe(True), 'r')  as fp_pipe, open(path.md(True), 'w') as fp_md:
 
-        fp_md.write('% Tutorial {}: {}\n% Example {}: {}\n% [![]({})](http://openssi.net)\n\n'.format(tutorial_num, tutorial_name, example_num, example_name, args.logo.replace('\\', '/')))
+        fp_md.write('% Tutorial {}: {}\n% Example {}: {} | [Previous]({}) | [Next]({})\n% [![]({})](http://openssi.net)\n\n'.format(tutorial_num, tutorial_name, example_num, example_name, path_prev.html(False), path_next.html(False), args.logo.replace('\\', '/')))
 
         pipe = fp_pipe.read()                
         matches = [m.groups() for m in regex_comments.finditer(pipe)]
         for m in matches:            
             if m[0].strip():
-                text = replace_input(unindent(m[0]).strip(), dir, name)
+                text = replace_input(unindent(m[0]).strip(), path.dir, path.name)
                 fp_md.write('{}\n\n'.format(text)  )      
             if m[1].strip():                
-                fp_md.write('``` xml\n{}\n```\n\n'.format(unindent(m[1]).strip()))                        
-        
-    print(' > {}'.format(name_md), end='')    
+                fp_md.write('``` xml\n{}\n```\n\n'.format(unindent(m[1]).strip()))       
+            
+    print(' > {}'.format(path.md(False)), end='')    
 
-    p = subprocess.Popen('pandoc -o {} -s -f markdown --number-sections --template ../templates/standalone.html --css ../templates/template.css --toc --toc-depth=4 {}'.format(name_html, name_md), cwd=dir)
+    p = subprocess.Popen('pandoc -o {} -s -f markdown --number-sections --template ../templates/standalone.html --css ../templates/template.css --toc --toc-depth=4 {}'.format(path.html(False), path.md(False)), cwd=path.dir)
     p.wait()
 
-    print(' > {}'.format(name_html), end='')    
+    print(' > {}'.format(path.html(False)), end='')    
 
-    with open(path_cmd, 'w') as fp:
+    with open(path.cmd(True), 'w') as fp:
         fp.write('@echo off\n')
-        fp.write(r'{}\xmlpipe -log ssi.log {}'.format(args.bin, name))
+        fp.write(r'{}\xmlpipe -log ssi.log {}'.format(args.bin, path.name))
 
-    print(' > {}'.format(name_cmd), end='\n')    
+    print(' > {}'.format(path.cmd(False)), end='\n')    
 
-    os.remove(path_md)
+    os.remove(path.md(True))
 
 
 if __name__ == '__main__':
@@ -168,7 +185,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if os.path.isdir(args.path):
-        for path in glob.glob(os.path.join(args.path, '*.pipeline')):
-            convert(args, path)
+        paths = glob.glob(os.path.join(args.path, '*.pipeline'))
+        n_paths = len(paths)
+        for i in range(n_paths):
+            convert(args, paths[i], paths[i-1], paths[(i+1)%n_paths])
     else:
         convert(args, args.path)

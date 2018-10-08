@@ -31,75 +31,47 @@
   
     <script src="templates/jquery.sticky-kit.js "></script>
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Example 2: transform" />
+  <meta name="author" content="Example 2: transform | Previous | Next" />
   <title>Tutorial 4: python</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="../templates/template.css" />
+  <link rel="stylesheet" href="../templates/template.css" type="text/css" />
 </head>
 <body>
 
@@ -109,7 +81,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="container">
         <span class="doc-title">Tutorial 4: python</span>
         <ul class="nav pull-right doc-info">
-                    <li><p class="navbar-text">Example 2: transform</p></li>
+                    <li><p class="navbar-text">Example 2: transform | <a href="01_sensor.html">Previous</a> | <a href="03_consume.html">Next</a></p></li>
                               <li><p class="navbar-text"><a href="http://openssi.net"><img src="../pics/ssi.png" /></a></p></li>
                   </ul>
       </div>
@@ -131,32 +103,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <div class="span9">
             <h1 id="r-peak"><span class="header-section-number">1</span> R peak</h1>
 <p>The so called R peak is the most prominent part of an ECG and can be used to measure the heart beat. All we have to do is calculate the distance of two successive R peaks. Hence, we have to identify the positions of R peaks in the first place.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/280px-SinusRhythmLabels.svg.png" /></p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/SinusRhythmLabels.svg/280px-SinusRhythmLabels.svg.png" />
+
+</div>
 <h1 id="detrend-the-signal"><span class="header-section-number">2</span> Detrend the signal</h1>
 <p>Since the R peak is usually the highest peak within a single ECG turn, we have to look for the highest peaks within a window. However, since the baseline of the original ECG is constantly floating up and down, we have to detrend the signal first. To this end, Scipy provides the function <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.detrend.html"><code>detrend</code></a>, which removes linear trends from the input data. We therefore implement a function <code>transform</code> (note how we convert the streams to Numpy arrays):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">def</span> transform(info, sin, sout, sxtra, board, opts, <span class="bu">vars</span>): </a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    x <span class="op">=</span> np.asarray(sin)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    y <span class="op">=</span> np.asarray(sout)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    np.copyto(y, signal.detrend(x, axis<span class="op">=</span><span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> transform(info, sin, sout, sxtra, board, opts, <span class="bu">vars</span>): 
+
+    x <span class="op">=</span> np.asarray(sin)
+    y <span class="op">=</span> np.asarray(sout)
+
+    np.copyto(y, signal.detrend(x, axis<span class="op">=</span><span class="dv">0</span>))</code></pre></div>
 <p>Then, we hand the script over to <code>PythonFilter</code>. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-transformer">[See also]</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;PythonFilter&quot;</span><span class="ot"> script=</span><span class="st">&quot;detrend&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;ecg_detrend&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;PythonFilter&quot;</span><span class="ot"> script=</span><span class="st">&quot;detrend&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;ecg_detrend&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span></code></pre></div>
 <h1 id="visualization"><span class="header-section-number">3</span> Visualization</h1>
 <p>Finally, we plot the original and the processed signal for comparison.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;ECG&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span>        </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;/consumer&gt;</span>        </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;ECG (detrend)&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg_detrend&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span>        </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/consumer&gt;</span>        </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;Decorator&quot;</span><span class="ot"> icon=</span><span class="st">&quot;true&quot;</span><span class="ot"> title=</span><span class="st">&quot;Pipeline&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;0,0,400,600&quot;</span><span class="kw">&gt;</span>console<span class="kw">&lt;/area&gt;</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>plot*<span class="kw">&lt;/area&gt;</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">&lt;/object&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;ECG&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span>        
+<span class="kw">&lt;/consumer&gt;</span>        
+<span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:plot&quot;</span><span class="ot"> title=</span><span class="st">&quot;ECG (detrend)&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;ecg_detrend&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.5s&quot;</span><span class="kw">/&gt;</span>        
+<span class="kw">&lt;/consumer&gt;</span>        
+<span class="kw">&lt;object</span><span class="ot"> create=</span><span class="st">&quot;Decorator&quot;</span><span class="ot"> icon=</span><span class="st">&quot;true&quot;</span><span class="ot"> title=</span><span class="st">&quot;Pipeline&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;0,0,400,600&quot;</span><span class="kw">&gt;</span>console<span class="kw">&lt;/area&gt;</span>
+    <span class="kw">&lt;area</span><span class="ot"> pos=</span><span class="st">&quot;400,0,400,600&quot;</span><span class="kw">&gt;</span>plot*<span class="kw">&lt;/area&gt;</span>
+<span class="kw">&lt;/object&gt;</span></code></pre></div>
             </div>
     </div>
   </div>

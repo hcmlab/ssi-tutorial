@@ -31,75 +31,47 @@
   
     <script src="templates/jquery.sticky-kit.js "></script>
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Example 3: transformer" />
+  <meta name="author" content="Example 3: transformer | Previous | Next" />
   <title>Tutorial 1: hello world</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="../templates/template.css" />
+  <link rel="stylesheet" href="../templates/template.css" type="text/css" />
 </head>
 <body>
 
@@ -109,7 +81,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="container">
         <span class="doc-title">Tutorial 1: hello world</span>
         <ul class="nav pull-right doc-info">
-                    <li><p class="navbar-text">Example 3: transformer</p></li>
+                    <li><p class="navbar-text">Example 3: transformer | <a href="02_write_to_disk.html">Previous</a> | <a href="04_events.html">Next</a></p></li>
                               <li><p class="navbar-text"><a href="http://openssi.net"><img src="../pics/ssi.png" /></a></p></li>
                   </ul>
       </div>
@@ -132,40 +104,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <div class="span9">
             <h1 id="load-additional-components"><span class="header-section-number">1</span> Load additional components</h1>
 <p>We load another plug-in <code>signal</code> to get access to basic signal processing algorithms. Check out the <a href="file:///F:/openssi/docs/api/index.html">API</a> to see which are those additional components. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-component">[See also]</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">&lt;register&gt;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;mouse&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;graphic&quot;</span><span class="kw">/&gt;</span>        </a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;ioput&quot;</span><span class="kw">/&gt;</span>                </a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;control&quot;</span><span class="kw">/&gt;</span>            </a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;signal&quot;</span><span class="kw">/&gt;</span>        </a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">&lt;/register&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;register&gt;</span>
+    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;mouse&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;graphic&quot;</span><span class="kw">/&gt;</span>        
+    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;ioput&quot;</span><span class="kw">/&gt;</span>                
+    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;control&quot;</span><span class="kw">/&gt;</span>            
+    <span class="kw">&lt;load</span><span class="ot"> name=</span><span class="st">&quot;signal&quot;</span><span class="kw">/&gt;</span>        
+<span class="kw">&lt;/register&gt;</span></code></pre></div>
 <h1 id="feature-and-filter"><span class="header-section-number">2</span> Feature and filter</h1>
-<p>A transformer takes as input one or more streams and outputs a new stream. With few exceptions, most transformers are either feature (i.e. reduce the input to a a single sample) or filter (i.e. sample rate remains unchanged). In the following, we calculate the energy of the cursor across both dimensions (therefore we set <code>global=&quot;true&quot;</code>). We use <code>delta=&quot;0.4s&quot;</code> to enlarge the processing window from 0.1 to 0.5 seconds. Since <code>energy</code> is a feature, the content of the window will be reduced to a single value, i.e. the output stream has a sample rate of 2 Hz. We also calculate the moving average of the signal. Since <code>MvgAvgVar</code> is a filter, the number of input samples equals the number of output samples (here <code>5</code>). <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-transformer">[See also]</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Energy&quot;</span><span class="ot"> global=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.1s&quot;</span><span class="ot"> delta=</span><span class="st">&quot;0.4s&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;energy&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">&lt;/transformer&gt;</span>    </a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;MvgAvgVar:average&quot;</span><span class="ot"> win=</span><span class="st">&quot;1.0&quot;</span><span class="ot"> format=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;5&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;average&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
+<p>A transformer takes as input one or more streams and outputs a new stream. With few exceptions, most transformers are either feature (i.e. reduce the input to a a single sample) or filter (i.e. sample rate remains unchanged). In the following, we calculate the energy of the cursor across both dimensions (therefore we set <code>global=&quot;true&quot;</code>). We use <code>delta=&quot;0.4s&quot;</code> to enlarge the processing window from 0.1 to 0.5 seconds. Since <code>energy</code> is a feature, the content of the window will be reduced to a single value, i.e. the output stream has a sample rate of 2 Hz. We also calculate the moving average of the signal. Since <code>MvgAvgVar</code> is a filter, the number of input samples equals the number of output samples (here <code>5</code>). <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-transformer">[See also]</a></p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Energy&quot;</span><span class="ot"> global=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.1s&quot;</span><span class="ot"> delta=</span><span class="st">&quot;0.4s&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;energy&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span>    
+<span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;MvgAvgVar:average&quot;</span><span class="ot"> win=</span><span class="st">&quot;1.0&quot;</span><span class="ot"> format=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;5&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;average&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span></code></pre></div>
 <h1 id="change-options-at-run-time"><span class="header-section-number">3</span> Change options at run-time</h1>
 <p>Some options can be changed at run-time. In the <a href="file:///F:/openssi/docs/api/index.html">API</a> these are marked with the keyword <code>FREE</code>.</p>
-<p><img src="https://raw.githubusercontent.com/hcmlab/ssi/master/docs/pics/xml-advanced-control-0.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/hcmlab/ssi/master/docs/pics/xml-advanced-control-0.png" />
+
+</div>
 <p>To demonstrate their use, we add a limiter and control the minimum and maximum with two sliders. Note that we explicitly set the name of the option that should be controlled by the sliders. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-advanced-control">[See also]</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;ControlSlider:slider&quot;</span><span class="ot"> id=</span><span class="st">&quot;limits&quot;</span><span class="ot"> name=</span><span class="st">&quot;min&quot;</span><span class="ot"> defval=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> minval=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> maxval=</span><span class="st">&quot;0.5&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;ControlSlider:slider&quot;</span><span class="ot"> id=</span><span class="st">&quot;limits&quot;</span><span class="ot"> name=</span><span class="st">&quot;max&quot;</span><span class="ot"> defval=</span><span class="st">&quot;0.5&quot;</span><span class="ot"> minval=</span><span class="st">&quot;0.5&quot;</span><span class="ot"> maxval=</span><span class="st">&quot;1.0&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Limits:limits&quot;</span><span class="ot"> min=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> max=</span><span class="st">&quot;1.0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="kw">/&gt;</span>            </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;limit&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/transformer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;ControlSlider:slider&quot;</span><span class="ot"> id=</span><span class="st">&quot;limits&quot;</span><span class="ot"> name=</span><span class="st">&quot;min&quot;</span><span class="ot"> defval=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> minval=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> maxval=</span><span class="st">&quot;0.5&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;runnable</span><span class="ot"> create=</span><span class="st">&quot;ControlSlider:slider&quot;</span><span class="ot"> id=</span><span class="st">&quot;limits&quot;</span><span class="ot"> name=</span><span class="st">&quot;max&quot;</span><span class="ot"> defval=</span><span class="st">&quot;0.5&quot;</span><span class="ot"> minval=</span><span class="st">&quot;0.5&quot;</span><span class="ot"> maxval=</span><span class="st">&quot;1.0&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Limits:limits&quot;</span><span class="ot"> min=</span><span class="st">&quot;0.0&quot;</span><span class="ot"> max=</span><span class="st">&quot;1.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;cursor&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="kw">/&gt;</span>            
+    <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;limit&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/transformer&gt;</span></code></pre></div>
 <h1 id="in-place-transformation"><span class="header-section-number">4</span> In-place transformation</h1>
 <p>If we manipulate a stream on-the-fly we call it an in-place manipulation. In that case the result of the transformation is not published on a pin, but directly bound to a component. Only consumers and sensors support in-place manipulation, and in the latter case only filter components are allowed. For instance, to visualize the first dimension of a stream we can add a <code>Selector</code> and set <code>indices=&quot;0&quot;</code>. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#xml-basics-transformer-inplace">[See also]</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:paint&quot;</span><span class="ot"> title=</span><span class="st">&quot;LIMIT (X-axis only)&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;limit&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">        <span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Selector&quot;</span><span class="ot"> indices=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="kw">&lt;/input&gt;</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">&lt;/consumer&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;consumer</span><span class="ot"> create=</span><span class="st">&quot;SignalPainter:paint&quot;</span><span class="ot"> title=</span><span class="st">&quot;LIMIT (X-axis only)&quot;</span><span class="ot"> size=</span><span class="st">&quot;10.0&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;limit&quot;</span><span class="ot"> frame=</span><span class="st">&quot;0.2s&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Selector&quot;</span><span class="ot"> indices=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;/input&gt;</span>
+<span class="kw">&lt;/consumer&gt;</span></code></pre></div>
             </div>
     </div>
   </div>
