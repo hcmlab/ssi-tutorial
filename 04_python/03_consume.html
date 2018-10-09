@@ -131,7 +131,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             send_rate(pos, last_pos, sr, board, opts, <span class="bu">vars</span>)
         last_pos <span class="op">=</span> pos
     
-    <span class="bu">vars</span>[<span class="st">&#39;last_pos&#39;</span>] <span class="op">=</span> last_pos</code></pre></div>
+    <span class="bu">vars</span>[<span class="st">&#39;last_pos&#39;</span>] <span class="op">=</span> last_pos
+    <span class="bu">vars</span>[<span class="st">&#39;counter&#39;</span>] <span class="op">+=</span> <span class="bu">len</span>(x)</code></pre></div>
 <p>For every peak we detect we calculate the distance to its preprocessor. If the rate is within the limits, we send two events with the rate and the position of the peak. <a href="https://rawgit.com/hcmlab/ssi/master/docs/index.html#python-events">[See also]</a></p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> send_rate(pos, last_pos, sr, board, opts, <span class="bu">vars</span>):
     

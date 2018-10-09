@@ -31,14 +31,14 @@
 	
 	<!-- # Select action unit
 			
-	Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouse, the `lip corner puller` might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a `Selector` and setting, e.g., `indides=8`.
+	Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouth, the `lip corner puller` might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a `Selector` and setting, e.g., `indices=$(AU12_LipCornerPuller)`.
 	
 	-->
 	<transformer create="OpenfaceSelector:selector" aureg="true">
 		<input pin="openface" frame="1"/>
 		<output pin="action_units"/>		
 	</transformer>
-	<transformer create="Selector:selector" indices="8">
+	<transformer create="Selector:selector" indices="$(AU12_LipCornerPuller)">
 		<input pin="action_units" frame="1"/>	
 		<output pin="sel_action_unit"/>
 	</transformer>

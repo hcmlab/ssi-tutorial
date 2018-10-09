@@ -33,7 +33,7 @@
 		<input pin="openface" frame="1"/>
 		<output pin="action_units"/>		
 	</transformer>
-	<transformer create="Selector:selector" indices="8">
+	<transformer create="Selector:selector" indices="7">
 		<input pin="action_units" frame="1"/>	
 		<output pin="sel_action_unit"/>
 	</transformer>

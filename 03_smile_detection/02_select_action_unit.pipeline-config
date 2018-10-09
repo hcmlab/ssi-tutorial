@@ -1,0 +1,14 @@
+AU01_InnerBrowRaiser=0
+AU02_OuterBrowRaiser=1
+AU04_BrowLowerer=2
+AU05_UpperLidRaiser=3
+AU06_CheekRaiser=4
+AU09_NoseWrinkler=5
+AU10_UpperLipRaiser=6
+AU12_LipCornerPuller=7
+AU14_Dimpler=8
+AU15_LipCornerDepressor=9
+AU17_ChinRaiser=10
+AU20_LipStretcher=11
+AU25_LipsPart=12
+AU26_JawDrop=13

@@ -102,12 +102,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       </div>
             <div class="span9">
             <h1 id="select-action-unit"><span class="header-section-number">1</span> Select action unit</h1>
-<p>Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouse, the <code>lip corner puller</code> might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a <code>Selector</code> and setting, e.g., <code>indides=8</code>.</p>
+<p>Now, we have to identify an action unit that is a good indicator for smiling. Since a smile is formed primarily by flexing the sides of the mouth, the <code>lip corner puller</code> might be a good candidate. However, there are other promising candidates, too. You can check it out by running the previous pipeline and observe which of the action units change while you are smiling. We select the most promising feature by adding a <code>Selector</code> and setting, e.g., <code>indices=$(AU12_LipCornerPuller)</code>.</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;OpenfaceSelector:selector&quot;</span><span class="ot"> aureg=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;openface&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span>
     <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;action_units&quot;</span><span class="kw">/&gt;</span>        
 <span class="kw">&lt;/transformer&gt;</span>
-<span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Selector:selector&quot;</span><span class="ot"> indices=</span><span class="st">&quot;8&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;transformer</span><span class="ot"> create=</span><span class="st">&quot;Selector:selector&quot;</span><span class="ot"> indices=</span><span class="st">&quot;$(AU12_LipCornerPuller)&quot;</span><span class="kw">&gt;</span>
     <span class="kw">&lt;input</span><span class="ot"> pin=</span><span class="st">&quot;action_units&quot;</span><span class="ot"> frame=</span><span class="st">&quot;1&quot;</span><span class="kw">/&gt;</span>    
     <span class="kw">&lt;output</span><span class="ot"> pin=</span><span class="st">&quot;sel_action_unit&quot;</span><span class="kw">/&gt;</span>
 <span class="kw">&lt;/transformer&gt;</span></code></pre></div>
