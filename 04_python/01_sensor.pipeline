@@ -15,7 +15,7 @@ In this tutorial we want to explore SSI's interface to [Python](https://www.pyth
 <pipeline>
 
 	<register>
-		<load name="python"/>		
+		<load name="python36"/>		
 		<load name="graphic"/>
 	</register>	
 	

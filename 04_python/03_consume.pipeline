@@ -3,7 +3,7 @@
 <pipeline>
 
 	<register>
-		<load name="python"/>		
+		<load name="python36"/>		
 		<load name="graphic"/>
 	</register>	
 	

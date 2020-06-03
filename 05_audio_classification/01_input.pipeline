@@ -13,7 +13,7 @@ In this tutorial, we will build an audio classifier. It takes sound from a micro
 		<load name="audio" depend="ssidialog.dll"/>
 		<load name="ioput"/>		
 		<load name="signal"/>		
-		<load name="python"/>
+		<load name="python36"/>
 		<load name="control"/>
 	</register>
 

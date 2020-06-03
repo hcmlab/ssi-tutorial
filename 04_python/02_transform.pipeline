@@ -11,7 +11,7 @@ The so called R peak is the most prominent part of an ECG and can be used to mea
 <pipeline>
 
 	<register>
-		<load name="python"/>		
+		<load name="python36"/>		
 		<load name="graphic"/>
 	</register>	
 	
